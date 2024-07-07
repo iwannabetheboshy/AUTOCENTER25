@@ -1,0 +1,949 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load intspace %}
+{% block content %}
+
+<div data-aos="fade-up">
+  <section class="welcome">
+      <div class="banner">
+          <div class="welcome-wp">
+              <img id="bg-cars" src="{%static 'img/cars.png' %}">
+              <img id="triangle" src="{%static 'img/triangle.png' %}">
+          </div>
+          <div class="welcome-text">
+              <h1>
+                  Авто из Японии, Кореи<br>
+                  и Китая с выгодой до<br>
+                  30% ниже рынка РФ
+              </h1>
+              <p>
+                  Высокий сервис для клиентов, от заключения<br>
+                  договора до выдачи/отправки авто.
+              </p>
+              <div id="welcome-btn">
+                  <button class="btn goal-btn" data-bs-toggle="modal" data-bs-target="#mainFeedBackModal">
+                      Рассчитать стоимость
+                  </button>
+              </div>
+          </div>
+      </div>
+  </section>
+</div>
+
+<div data-aos="fade-up">
+  <section class="mini-catalog">
+  
+  
+      <div class="row">
+          <div class="col-12">
+              <h2>Автомобили из Японии</h2>
+          </div>
+          <div class="col-8 gray-text text-start">
+              Toyota, Honda, Nissan и другие японские автомобили.
+          </div>
+          <div class="col-4 gray-text text-end see-all">
+              <a href="/cars_japan/" style="color: #191919;">
+                  <span>Смотреть все</span>
+                  <svg style="margin-left: 16px;" width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M17.7806 8.03055L11.0306 14.7806C10.8899 14.9213 10.699 15.0003 10.5 15.0003C10.301 15.0003 10.1101 14.9213 9.96937 14.7806C9.82864 14.6398 9.74958 14.449 9.74958 14.2499C9.74958 14.0509 9.82864 13.86 9.96937 13.7193L15.4397 8.24993H0.75C0.551088 8.24993 0.360322 8.17091 0.21967 8.03026C0.0790178 7.88961 0 7.69884 0 7.49993C0 7.30102 0.0790178 7.11025 0.21967 6.9696C0.360322 6.82895 0.551088 6.74993 0.75 6.74993H15.4397L9.96937 1.28055C9.82864 1.13982 9.74958 0.948952 9.74958 0.749929C9.74958 0.550906 9.82864 0.360034 9.96937 0.219304C10.1101 0.0785732 10.301 -0.000488281 10.5 -0.000488281C10.699 -0.000488281 10.8899 0.0785732 11.0306 0.219304L17.7806 6.9693C17.8504 7.03896 17.9057 7.12168 17.9434 7.21272C17.9812 7.30377 18.0006 7.40137 18.0006 7.49993C18.0006 7.59849 17.9812 7.69609 17.9434 7.78713C17.9057 7.87818 17.8504 7.9609 17.7806 8.03055Z" fill="#191919"/>
+                  </svg>
+              </a>
+          </div>
+      </div>
+	  
+	  <div class="marg-row row row-cols-2 row-cols-lg-3 row-cols-xl-4">
+	  
+		{% for car in cars %}
+		<div class="col">
+              <div class="auto-card">
+				<a href="/cars/{{car.id}}">
+                  <img src="/media/{{car.photos.all.0}}">
+				  </a>
+                  <div class="car-info">
+                      <h3 class="my-0">{{car.brand}} {{car.model}}</h3>
+                      <p>{{car.year}} • {{car.engine_volume}} cc • {{car.drive}} • {{car.type_engine}} • {{car.transmission}}</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                          <span>{{car.price|intspace}}</span>
+                          <button class="btn submit-app"  data-bs-toggle="modal" data-bs-target="#mainFeedBackModal" onclick="setModalInput('Я заинтересовался автомобилем {{car.brand}} {{car.model}} {{car.year}}')">Оставить заявку</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+		{% endfor %}
+      </div>
+  
+  
+      <div class="row">
+          <div class="col-12 text-center">
+              <a href="/cars_japan/">
+                  <button class="btn goal-btn">Смотреть все</button>
+              </a>
+          </div>
+      </div>
+  </section>
+</div>
+
+
+<div data-aos="fade-up">
+  <section class="other-country">
+      <div class="row">
+          <div class="col-12">
+              <h2>
+                  Автомобили из Китая и Кореи
+              </h2>
+          </div>
+          <div class="col-12 gray-text text-start">
+              Поможем с покупкой автомобилей из Китая и Кореи.
+          </div>
+      </div>
+  
+      <div class="marg-row row row-cols-1 row-cols-lg-2">
+          <div class="col">
+              <div class="linear-overlay">
+                  <img src="{%static 'img/countries/china.jpeg' %}">
+                  <div class="overlay">
+                      <h3>Автомобили из Китая</h3>
+                      <p>Chery, Haval, EXEED и другиекитайские автомобили.</p>
+                  </div>
+                  <button class="btn support-btn">
+                      <a href="/cars_china/">Смотреть в каталоге</a>
+                  </button>
+              </div>
+          </div>
+          <div class="col">
+              <div class="linear-overlay">
+                  <img src="{%static 'img/countries/korea.png' %}">
+                  <div class="overlay">
+                      <h3>Автомобили из Кореи</h3>
+                      <p>Hyundai, KIA, Genesis и другие корейские автомобили.</p>
+                  </div>
+                  <button class="btn support-btn">
+                      <a href="/cars_korea/">Смотреть в каталоге</a>
+                  </button>
+              </div>
+          </div>
+      </div>
+  </section>
+</div>
+
+
+<div data-aos="fade-up">
+    <section class="auto-selection" id="auto-selection">
+        <div class="row">
+            
+            <div class="d-xl-none d-inline-block order-1">
+                <div class="col-12">
+                    <h2>
+                        Автоподбор
+                    </h2>
+                </div>
+                <div class="col-12 gray-text text-start mb-4">
+                    Качестенный автоподбор и осмотр с независимой оценкой.
+                </div>
+            </div>
+
+            <div class="col-xxl-7 col-xl-6 col-12 order-xl-1 order-3">
+                <div class="d-xl-inline-block d-none">
+                    <div class="col-12">
+                        <h2>
+                            Автоподбор
+                        </h2>
+                    </div>
+                    <div class="col-12 gray-text text-start mb-4">
+                        Качестенный автоподбор и осмотр с независимой оценкой.
+                    </div>
+                </div>
+
+                <div class="check-auto-selection row">
+                    <div class="col-md-6 col-12">
+                        <div class="d-flex align-items-start">
+                            <img src="{% static 'img/auto-selection/check-mark.png' %}" alt="">
+                            <p>Фото и видео отчет кузова с и пользованием толщиномера, салона, моторного отсека и днища автомобиля</p>
+                        </div>
+                        <div class="d-flex align-items-start">
+                            <img src="{% static 'img/auto-selection/check-mark.png' %}" alt="">
+                            <p>Диагностика сканером</p>
+                        </div>
+                        <div class="d-flex align-items-start">
+                            <img src="{% static 'img/auto-selection/check-mark.png' %}" alt="">
+                            <p>Тест-драйв</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="d-flex align-items-start">
+                            <img src="{% static 'img/auto-selection/check-mark.png' %}" alt="">
+                            <p>Запрос и проверка аукционного листа, либо проверка по номеру кузова </p>
+                        </div>
+                        <div class="d-flex align-items-start">
+                            <img src="{% static 'img/auto-selection/check-mark.png' %}" alt="">
+                            <p>Проверка на юридическую частоту</p>
+                        </div>
+                        <div class="d-flex align-items-start">
+                            <img src="{% static 'img/auto-selection/check-mark.png' %}" alt="">
+                            <p>Заключение подборщика</p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr style="z-index: -1" class="col-12">
+
+                <div class="check-auto-selection row">
+                    <div class="col-12 gray-text text-start mb-3">
+                        ⁠Полное сопровождение сделки и связь с клиентом 24/7. 
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="d-flex align-items-start">
+                            <img src="{% static 'img/auto-selection/car-1.png' %}" alt="">
+                            <p>Подбор авто с клиентом - 25 000 ₽</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="d-flex align-items-start">
+                            <img src="{% static 'img/auto-selection/car-2.png' %}" alt="">
+                            <p>Регистрация автомобиля в ГАИ - 15 000 ₽</p>
+                        </div>
+                    </div>
+                    <div class="col d-flex justify-content-xl-start justify-content-center">
+                        <button class="btn goal-btn" data-bs-toggle="modal" data-bs-target="#mainFeedBackModal">
+                            Заказать услугу
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xxl-5 col-xl-6 col-12 d-flex justify-content-xl-end justify-content-center order-xl-2 order-2 mb-xl-0 mb-4">
+                <img style="z-index: 1; max-width: 100%" src="{% static 'img/auto-selection/1.png' %}" alt="">
+            </div>
+        </div>
+    </section>
+</div>
+
+<div data-aos="fade-up">
+  <section class="scheme" id="scheme">
+      <div class="row">
+          <div class="col-12">
+              <h2>
+                  Схема работы
+              </h2>
+          </div>
+          <div class="col-12 gray-text text-start">
+              Полное сопровождение сделки и связь с клиентом 24/7.
+          </div>
+      </div>
+  
+      <div class="desktop-scheme marg-row row row-cols-md-2 row-cols-xl-4 d-md-flex d-none">
+          <div class="col">
+              <div class="thr">
+                  <img src="{%static 'img/scheme/1.png' %}">
+              </div>
+              <div class="scheme-text">
+                  <h4>Договор</h4>
+                  <p>Уточнение информации для поиска автомобиля, подписание договора</p>
+              </div>
+          </div>
+          <div class="col">
+              <div class="thr">
+                  <img src="{%static 'img/scheme/2.png' %}">
+              </div>
+              <div class="scheme-text">
+                  <h4>Подбор</h4>
+                  <p>Осуществляем поиск авто по заданным параметрам</p>
+              </div>
+          </div>
+          <div class="col">
+              <div class="thr">
+                  <img src="{%static 'img/scheme/3.png' %}">
+              </div>
+              <div class="scheme-text">
+                  <h4>Доставка</h4>
+                  <p>Доставка автомобиля в любую точку РФ, растаможка</p>
+              </div>
+          </div>
+          <div class="col">
+              <div class="thr thr-last">
+                  <img src="{%static 'img/scheme/4.png' %}">
+              </div>
+              <div class="scheme-text">
+                  <h4>Передача</h4>
+                  <p>Передача автомобиля и полного пакета документов</p>
+              </div>
+          </div>
+      </div>
+  
+      <div class="mobile-scheme marg-row">
+          <div class="d-flex flex-row">
+              <div class="mobile-thr">
+                  <img src="{%static 'img/scheme/1.png' %}">
+              </div>
+              <div class="scheme-text">
+                  <h4>Договор</h4>
+                  <p>Уточнение информации для поиска автомобиля, подписание договора</p>
+              </div>
+          </div>
+          <div class="d-flex flex-row">
+              <div class="mobile-thr">
+                  <img src="{%static 'img/scheme/2.png' %}">
+              </div>
+              <div class="scheme-text">
+                  <h4>Подбор</h4>
+                  <p>Осуществляем поиск авто по заданным параметрам</p>
+              </div>
+          </div>
+          <div class="d-flex flex-row">
+              <div class="mobile-thr">
+                  <img src="{%static 'img/scheme/3.png' %}">
+              </div>
+              <div class="scheme-text">
+                  <h4>Доставка</h4>
+                  <p>Доставка автомобиля в любую точку РФ, растаможка</p>
+              </div>
+          </div>
+          <div class="d-flex flex-row">
+              <div class="mobile-thr-last">
+                  <img src="{%static 'img/scheme/4.png' %}">
+              </div>
+              <div class="scheme-text">
+                  <h4>Передача</h4>
+                  <p>Передача автомобиля и полного пакета документов</p>
+              </div>
+          </div>
+      </div>
+  
+  
+  
+  </section>
+</div>
+
+<div data-aos="fade-up">
+  <section class="about">
+      <div class="about-text">
+          <div class="linear-overlay">
+              <img id="bg-img" src="{%static 'img/about.png' %}">
+              <div class="about-overlay">
+                  <h3>О нас</h3>
+                  <p>
+                      Компания «AUTOCENTER» предлагает широкий выбор автомобилей от ведущих мировых
+                      производителей.Мы специализируемся на продаже новых и подержанных авто. Наша
+                      команда профессионалов поможет вам выбрать идеальный автомобиль, учитывая ваши
+                      потребности и бюджет.
+                  </p>
+              </div>
+  
+              <div class="about-overlay-logo">
+                  <img src="{%static 'img/about-logo.png' %}">
+              </div>
+          </div>
+  
+          <div class="adv-overlay">
+              <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6">
+                  <div class="col">
+                      <img src="{%static 'img/adv/v1.svg' %}">
+                      <p>Короткие сроки<br>доставки</p>
+                  </div>
+                  <div class="col">
+                      <img src="{%static 'img/adv/v2.svg' %}">
+                      <p>Связь с клиентом<br>24/7</p>
+                  </div>
+                  <div class="col">
+                      <img src="{%static 'img/adv/v3.svg' %}">
+                      <p>Опыт работы<br>более 5 лет</p>
+                  </div>
+                  <div class="col">
+                      <img src="{%static 'img/adv/v6.svg' %}">
+                      <p>Привезем авто с<br>выгодой до 30% </p>
+                  </div>
+                  <div class="col">
+                      <img src="{%static 'img/adv/v5.svg' %}">
+                      <p>Высокий сервис<br>для клиентов</p>
+                  </div>
+                  <div class="col">
+                      <img src="{%static 'img/adv/v7.svg' %}">
+                      <p>Профессионализм<br>сотрудников компании</p>
+                  </div>
+              </div>
+          </div>
+  
+      </div>
+  
+  
+      <div class="row">
+          <div class="col-12 text-center">
+              <button class="btn goal-btn" data-bs-toggle="modal" data-bs-target="#mainFeedBackModal">Рассчитать стоимость</button>
+          </div>
+      </div>
+  
+  </section>
+</div>
+
+<div data-aos="fade-up">
+  <section class="reviews-header">
+      <div class="row">
+          <div class="col-12">
+              <h2>Отзывы клиентов</h2>
+          </div>
+          <div class="col-9 gray-text text-start">
+              Реальные отзывы наших клинетов.
+          </div>
+          <div class="col-3 text-end custom-arrows">
+  
+              <a class="custom-prev-arrow">
+                  <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8.46932 17.0306L0.969325 9.53061C0.899593 9.46096 0.844273 9.37824 0.80653 9.28719C0.768787 9.19615 0.749361 9.09855 0.749361 8.99999C0.749361 8.90143 0.768787 8.80383 0.80653 8.71278C0.844273 8.62174 0.899593 8.53902 0.969325 8.46936L8.46932 0.969365C8.61005 0.828634 8.80093 0.749573 8.99995 0.749573C9.19897 0.749573 9.38984 0.828634 9.53057 0.969365C9.67131 1.1101 9.75037 1.30097 9.75037 1.49999C9.75037 1.69901 9.67131 1.88988 9.53057 2.03061L2.56026 8.99999L9.53057 15.9694C9.60026 16.039 9.65553 16.1218 9.69324 16.2128C9.73096 16.3039 9.75037 16.4014 9.75037 16.5C9.75037 16.5985 9.73096 16.6961 9.69324 16.7872C9.65553 16.8782 9.60026 16.9609 9.53057 17.0306C9.46089 17.1003 9.37817 17.1556 9.28712 17.1933C9.19608 17.231 9.09849 17.2504 8.99995 17.2504C8.9014 17.2504 8.80382 17.231 8.71278 17.1933C8.62173 17.1556 8.53901 17.1003 8.46932 17.0306Z" fill="#888888"/>
+                  </svg>
+  
+              </a>
+              <a class="custom-next-arrow">
+                  <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8.46932 17.0306L0.969325 9.53061C0.899593 9.46096 0.844273 9.37824 0.80653 9.28719C0.768787 9.19615 0.749361 9.09855 0.749361 8.99999C0.749361 8.90143 0.768787 8.80383 0.80653 8.71278C0.844273 8.62174 0.899593 8.53902 0.969325 8.46936L8.46932 0.969365C8.61005 0.828634 8.80093 0.749573 8.99995 0.749573C9.19897 0.749573 9.38984 0.828634 9.53057 0.969365C9.67131 1.1101 9.75037 1.30097 9.75037 1.49999C9.75037 1.69901 9.67131 1.88988 9.53057 2.03061L2.56026 8.99999L9.53057 15.9694C9.60026 16.039 9.65553 16.1218 9.69324 16.2128C9.73096 16.3039 9.75037 16.4014 9.75037 16.5C9.75037 16.5985 9.73096 16.6961 9.69324 16.7872C9.65553 16.8782 9.60026 16.9609 9.53057 17.0306C9.46089 17.1003 9.37817 17.1556 9.28712 17.1933C9.19608 17.231 9.09849 17.2504 8.99995 17.2504C8.9014 17.2504 8.80382 17.231 8.71278 17.1933C8.62173 17.1556 8.53901 17.1003 8.46932 17.0306Z" fill="#888888"/>
+                  </svg>
+  
+              </a>
+          </div>
+      </div>
+  
+  
+      <div class="marg-row reviews-slider">
+          <div class="review-wp">
+              <div class="review">
+                  <div class="d-flex flex-row">
+                      <div class="review-img">
+                          <img src="{%static 'img/reviews-slider/Рисунок12.png' %}" class="review-img">
+                      </div>
+                      <div class="client-info">
+                          <p style="margin-bottom: 4px;">Александр Л</p>
+                          <p class="clent-mark">
+                              {% for i in '01234'|make_list %}
+                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M8.09981 1.38975C8.50165 0.699896 9.49831 0.699896 9.90006 1.38975L12.2292 5.3887L16.7522 6.36813C17.5325 6.53709 17.8405 7.48492 17.3086 8.08026L14.2251 11.5312L14.6912 16.1354C14.7716 16.9297 13.9654 17.5155 13.2348 17.1936L8.99998 15.3274L4.76511 17.1936C4.03455 17.5155 3.22827 16.9297 3.3087 16.1354L3.77487 11.5312L0.691412 8.08026C0.159478 7.48492 0.467453 6.53709 1.24771 6.36813L5.77068 5.3887L8.09981 1.38975Z" fill="#FFCC02"/>
+                              </svg>
+                              {% endfor %}
+                          </p>
+                      </div>
+                  </div>
+                  <div class="client-text" id="review-1">
+                      <p>Всем здравствуйте.Хочу выразить огромную благодарность компании за помощь в покупке авто из Японии.Первый раз заказывал машину с аукциона. Примерно год планировал приобретение,приценивался ,следил за рынком автомобилей и наконец-то решился. Ребята сразу оперативно ответили, сопровождали на всех этапах покупки, и буквально за ручку вели. В общем спасибо Вам!!!</p>
+					  <span class="client-date">17.01.2024</span>
+                  </div>
+				  <p id="more-1" onclick="showFullReview('1')" class="m-0 show-more">развернуть</p>
+              </div>
+          </div>
+  
+          <div class="review-wp">
+              <div class="review">
+                  <div class="d-flex flex-row">
+                      <div class="review-img">
+                          <img src="{%static 'img/reviews-slider/Рисунок3.png' %}" class="review-img">
+                      </div>
+                      <div class="client-info">
+                          <p style="margin-bottom: 4px;">Юлия</p>
+                          <p class="clent-mark">
+                              {% for i in '01234'|make_list %}
+                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M8.09981 1.38975C8.50165 0.699896 9.49831 0.699896 9.90006 1.38975L12.2292 5.3887L16.7522 6.36813C17.5325 6.53709 17.8405 7.48492 17.3086 8.08026L14.2251 11.5312L14.6912 16.1354C14.7716 16.9297 13.9654 17.5155 13.2348 17.1936L8.99998 15.3274L4.76511 17.1936C4.03455 17.5155 3.22827 16.9297 3.3087 16.1354L3.77487 11.5312L0.691412 8.08026C0.159478 7.48492 0.467453 6.53709 1.24771 6.36813L5.77068 5.3887L8.09981 1.38975Z" fill="#FFCC02"/>
+                              </svg>
+                              {% endfor %}
+                          </p>
+                      </div>
+                  </div>
+                  <div class="client-text" id="review-2">
+                      <p>Компанию АвтоЦентр нашла случайно. До этого с покупкой аукционных праворульных машин не сталкивалась. Списались, я обозначила свои "хотелки", обговорили бюджет, заключили договор, оплатила аванс. Ребята из компании оперативно приобрели автомобиль. Ориентировочно за 3 недели с даты победы на аукционе машину привезли и растаможили во Владивостоке. По итогу - работой компании довольна, как и автомобилем.</p>
+                      <span class="client-date">24.01.2024</span>
+                  </div>
+				  <p id="more-2" onclick="showFullReview('2')" class="m-0 show-more">развернуть</p>
+              </div>
+          </div>
+  
+          <div class="review-wp">
+              <div class="review">
+                  <div class="d-flex flex-row">
+                      <div class="review-img">
+                          <img src="{%static 'img/reviews-slider/Рисунок2.png' %}" class="review-img">
+                      </div>
+                      <div class="client-info">
+                          <p style="margin-bottom: 4px;">Екатерина</p>
+                          <p class="clent-mark">
+                              {% for i in '01234'|make_list %}
+                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M8.09981 1.38975C8.50165 0.699896 9.49831 0.699896 9.90006 1.38975L12.2292 5.3887L16.7522 6.36813C17.5325 6.53709 17.8405 7.48492 17.3086 8.08026L14.2251 11.5312L14.6912 16.1354C14.7716 16.9297 13.9654 17.5155 13.2348 17.1936L8.99998 15.3274L4.76511 17.1936C4.03455 17.5155 3.22827 16.9297 3.3087 16.1354L3.77487 11.5312L0.691412 8.08026C0.159478 7.48492 0.467453 6.53709 1.24771 6.36813L5.77068 5.3887L8.09981 1.38975Z" fill="#FFCC02"/>
+                              </svg>
+                              {% endfor %}
+                          </p>
+                      </div>
+                  </div>
+                  <div class="client-text" id="review-3">
+                      <p>В первый раз взяла машину из Японии,почитала отзывы, выбрала эту компанию и не ошиблась! Полное сопровождение: от выбора машины, до оформления и отправки, все чётко, оперативно,, всегда на связи. Высокий профессионализм, чёткость, отзывчивость, оперативность. Обязательно буду рекомендовать вашу компанию друзьям и знакомым! Удачи вам и процветания!</p>
+                      <span class="client-date">03.02.2024</span>
+                  </div>
+				  <p id="more-3" onclick="showFullReview('3')" class="m-0 show-more">развернуть</p>
+              </div>
+          </div>
+  
+          <div class="review-wp">
+              <div class="review">
+                  <div class="d-flex flex-row">
+                      <div class="review-img">
+                          <img src="{%static 'img/reviews-slider/Рисунок1.png' %}" class="review-img">
+                      </div>
+                      <div class="client-info">
+                          <p style="margin-bottom: 4px;">Матвей</p>
+                          <p class="clent-mark">
+                              {% for i in '01234'|make_list %}
+                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M8.09981 1.38975C8.50165 0.699896 9.49831 0.699896 9.90006 1.38975L12.2292 5.3887L16.7522 6.36813C17.5325 6.53709 17.8405 7.48492 17.3086 8.08026L14.2251 11.5312L14.6912 16.1354C14.7716 16.9297 13.9654 17.5155 13.2348 17.1936L8.99998 15.3274L4.76511 17.1936C4.03455 17.5155 3.22827 16.9297 3.3087 16.1354L3.77487 11.5312L0.691412 8.08026C0.159478 7.48492 0.467453 6.53709 1.24771 6.36813L5.77068 5.3887L8.09981 1.38975Z" fill="#FFCC02"/>
+                              </svg>
+                              {% endfor %}
+                          </p>
+                      </div>
+                  </div>
+                  <div class="client-text" id="review-4">
+                      <p>Когда решили купить автомобиль из Кореи,нам посоветовали обратиться к ребятам из компании АвтоЦентр. Позвонили к ним, нам объяснили как все это будет происходить и т.д.Так как мы хотели машину в идеальном состоянии,понадобилось время,чтобы найти подходящую машину. И ребята смогли, и организовали перевозку ,растаможку и доставку автомобиля до Москвы</p>
+                      <span class="client-date">29.02.2024</span>
+                  </div>
+				  <p id="more-4" onclick="showFullReview('4')" class="m-0 show-more">развернуть</p>
+              </div>
+          </div>
+  
+          <div class="review-wp">
+              <div class="review">
+                  <div class="d-flex flex-row">
+                      <div class="review-img">
+                          <img src="{%static 'img/reviews-slider/Рисунок4.png' %}" class="review-img">
+                      </div>
+                      <div class="client-info">
+                          <p style="margin-bottom: 4px;">Станислав К.</p>
+                          <p class="clent-mark">
+                              {% for i in '01234'|make_list %}
+                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M8.09981 1.38975C8.50165 0.699896 9.49831 0.699896 9.90006 1.38975L12.2292 5.3887L16.7522 6.36813C17.5325 6.53709 17.8405 7.48492 17.3086 8.08026L14.2251 11.5312L14.6912 16.1354C14.7716 16.9297 13.9654 17.5155 13.2348 17.1936L8.99998 15.3274L4.76511 17.1936C4.03455 17.5155 3.22827 16.9297 3.3087 16.1354L3.77487 11.5312L0.691412 8.08026C0.159478 7.48492 0.467453 6.53709 1.24771 6.36813L5.77068 5.3887L8.09981 1.38975Z" fill="#FFCC02"/>
+                              </svg>
+                              {% endfor %}
+                          </p>
+                      </div>
+                  </div>
+                  <div class="client-text" id="review-5">
+                      <p>Приветствую всех! Хочу сказать, что приятно удивлен качеством обслуживания и внимательным отношением персонала в данной компании.Они предоставили полную информацию и помогли выбрать автомобиль, который полностью соответствует моим требованиям.Большое спасибо за профессионализм!</p>
+                      <span class="client-date">21.03.2024</span>
+                  </div>
+				  <p id="more-5" onclick="showFullReview('5')" class="m-0 show-more">развернуть</p>
+              </div>
+          </div>
+  
+          <div class="review-wp">
+              <div class="review">
+                  <div class="d-flex flex-row">
+                      <div class="review-img">
+                          <img src="{%static 'img/reviews-slider/Рисунок5.png' %}" class="review-img">
+                      </div>
+                      <div class="client-info">
+                          <p style="margin-bottom: 4px;">Захар</p>
+                          <p class="clent-mark">
+                              {% for i in '01234'|make_list %}
+                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M8.09981 1.38975C8.50165 0.699896 9.49831 0.699896 9.90006 1.38975L12.2292 5.3887L16.7522 6.36813C17.5325 6.53709 17.8405 7.48492 17.3086 8.08026L14.2251 11.5312L14.6912 16.1354C14.7716 16.9297 13.9654 17.5155 13.2348 17.1936L8.99998 15.3274L4.76511 17.1936C4.03455 17.5155 3.22827 16.9297 3.3087 16.1354L3.77487 11.5312L0.691412 8.08026C0.159478 7.48492 0.467453 6.53709 1.24771 6.36813L5.77068 5.3887L8.09981 1.38975Z" fill="#FFCC02"/>
+                              </svg>
+                              {% endfor %}
+                          </p>
+                      </div>
+                  </div>
+                  <div class="client-text" id="review-6">
+                      <p>Ребята нормальные, работу свою делают несмотря на особенности российской действительности. Результат подбора очень достойный, мне 5-летняя машина приехала реально в состоянии новой. Можно доверять.</p>
+                      <span class="client-date">12.03.2024</span>
+                  </div>
+				  <p id="more-6" onclick="showFullReview('6')" class="m-0 show-more">развернуть</p>
+              </div>
+          </div>
+  
+          <div class="review-wp">
+              <div class="review">
+                  <div class="d-flex flex-row">
+                      <div class="review-img">
+                          <img src="{%static 'img/reviews-slider/Рисунок6.png' %}" class="review-img">
+                      </div>
+                      <div class="client-info">
+                          <p style="margin-bottom: 4px;">Валентин Т.</p>
+                          <p class="clent-mark">
+                              {% for i in '01234'|make_list %}
+                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M8.09981 1.38975C8.50165 0.699896 9.49831 0.699896 9.90006 1.38975L12.2292 5.3887L16.7522 6.36813C17.5325 6.53709 17.8405 7.48492 17.3086 8.08026L14.2251 11.5312L14.6912 16.1354C14.7716 16.9297 13.9654 17.5155 13.2348 17.1936L8.99998 15.3274L4.76511 17.1936C4.03455 17.5155 3.22827 16.9297 3.3087 16.1354L3.77487 11.5312L0.691412 8.08026C0.159478 7.48492 0.467453 6.53709 1.24771 6.36813L5.77068 5.3887L8.09981 1.38975Z" fill="#FFCC02"/>
+                              </svg>
+                              {% endfor %}
+                          </p>
+                      </div>
+                  </div>
+                  <div class="client-text" id="review-7">
+                      <p>Приветствую всех! Хочу сказать, что приятно удивлен качеством обслуживания и внимательным отношением персонала в данной компании.Они предоставили полную информацию и помогли выбрать автомобиль, который полностью соответствует моим требованиям.Большое спасибо за профессионализм!</p>
+                      <span class="client-date">21.03.2024</span>
+                  </div>
+				  <p id="more-7" onclick="showFullReview('7')" class="m-0 show-more">развернуть</p>
+              </div>
+          </div>
+  
+          <div class="review-wp">
+              <div class="review">
+                  <div class="d-flex flex-row">
+                      <div class="review-img">
+                          <img src="{%static 'img/reviews-slider/Рисунок7.png' %}" class="review-img">
+                      </div>
+                      <div class="client-info">
+                          <p style="margin-bottom: 4px;">Мария</p>
+                          <p class="clent-mark">
+                              {% for i in '01234'|make_list %}
+                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M8.09981 1.38975C8.50165 0.699896 9.49831 0.699896 9.90006 1.38975L12.2292 5.3887L16.7522 6.36813C17.5325 6.53709 17.8405 7.48492 17.3086 8.08026L14.2251 11.5312L14.6912 16.1354C14.7716 16.9297 13.9654 17.5155 13.2348 17.1936L8.99998 15.3274L4.76511 17.1936C4.03455 17.5155 3.22827 16.9297 3.3087 16.1354L3.77487 11.5312L0.691412 8.08026C0.159478 7.48492 0.467453 6.53709 1.24771 6.36813L5.77068 5.3887L8.09981 1.38975Z" fill="#FFCC02"/>
+                              </svg>
+                              {% endfor %}
+                          </p>
+                      </div>
+                  </div>
+                  <div class="client-text" id="review-1">
+                      <p>Заказала себе Toyota Ch-r, с японского аукциона, через компанию АвтоЦентр. Хотелось бы поблагодарить компанию за хорошую работу. Подходящее авто подыскали достаточно быстро, все формальности по привозу и растаможке тоже не заняли много времени. Очень довольна тем как все прошло и какой по итогу автомобиль я получила. Спасибо вашей компании, удачи и процветания, буду вас советовать всем знакомым!</p>
+                      <span class="client-date">29.03.2024</span>
+                  </div>
+				  <p id="more-8" onclick="showFullReview('8')" class="m-0 show-more">развернуть</p>
+              </div>
+          </div>
+  
+          <div class="review-wp">
+              <div class="review">
+                  <div class="d-flex flex-row">
+                      <div class="review-img">
+                          <img src="{%static 'img/reviews-slider/Рисунок8.png' %}" class="review-img">
+                      </div>
+                      <div class="client-info">
+                          <p style="margin-bottom: 4px;">Максим</p>
+                          <p class="clent-mark">
+                              {% for i in '01234'|make_list %}
+                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M8.09981 1.38975C8.50165 0.699896 9.49831 0.699896 9.90006 1.38975L12.2292 5.3887L16.7522 6.36813C17.5325 6.53709 17.8405 7.48492 17.3086 8.08026L14.2251 11.5312L14.6912 16.1354C14.7716 16.9297 13.9654 17.5155 13.2348 17.1936L8.99998 15.3274L4.76511 17.1936C4.03455 17.5155 3.22827 16.9297 3.3087 16.1354L3.77487 11.5312L0.691412 8.08026C0.159478 7.48492 0.467453 6.53709 1.24771 6.36813L5.77068 5.3887L8.09981 1.38975Z" fill="#FFCC02"/>
+                              </svg>
+                              {% endfor %}
+                          </p>
+                      </div>
+                  </div>
+                  <div class="client-text" id="review-9">
+                      <p>Здравствуйте, я заказывал у вас Хонду, и неделю назад приезжал, забирал её сам и своим ходом приехал на ней в Воронеж. Машина классная, мне очень понравилась, хотя до неё на правом руле не ездил не разу. Хотел сказать вам огромное спасибо за проделанную вами работу, не пожалел ни разу что обратился именно к вам! Работать с вами было очень приятно и легко.</p>
+                      <span class="client-date">01.05.2024</span>
+                  </div>
+				  <p id="more-9" onclick="showFullReview('9')" class="m-0 show-more">развернуть</p>
+              </div>
+          </div>
+  
+          <div class="review-wp">
+              <div class="review">
+                  <div class="d-flex flex-row">
+                      <div class="review-img">
+                          <img src="{%static 'img/reviews-slider/Рисунок9.png' %}" class="review-img">
+                      </div>
+                      <div class="client-info">
+                          <p style="margin-bottom: 4px;">Анжелика</p>
+                          <p class="clent-mark">
+                              {% for i in '01234'|make_list %}
+                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M8.09981 1.38975C8.50165 0.699896 9.49831 0.699896 9.90006 1.38975L12.2292 5.3887L16.7522 6.36813C17.5325 6.53709 17.8405 7.48492 17.3086 8.08026L14.2251 11.5312L14.6912 16.1354C14.7716 16.9297 13.9654 17.5155 13.2348 17.1936L8.99998 15.3274L4.76511 17.1936C4.03455 17.5155 3.22827 16.9297 3.3087 16.1354L3.77487 11.5312L0.691412 8.08026C0.159478 7.48492 0.467453 6.53709 1.24771 6.36813L5.77068 5.3887L8.09981 1.38975Z" fill="#FFCC02"/>
+                              </svg>
+                              {% endfor %}
+                          </p>
+                      </div>
+                  </div>
+                  <div class="client-text" id="review-10">
+                      <p>Беру уже через эту фирму вторую машину, и буду брать третью! Ребята молодцы всегда на связи , всё популярно объясняют, а сама работа фирмы оперативная ,с момента оплаты, машина приходит во владивосток через 3-4 недели и проходит таможку и вот, машина уже у меня! Эту фирму рекомендую как надёжных и проверенных ребят.</p>
+                      <span class="client-date">16.04.2024</span>
+                  </div>
+				  <p id="more-10" onclick="showFullReview('10')" class="m-0 show-more">развернуть</p>
+              </div>
+          </div>
+      </div>
+  </section>
+</div>
+
+<style>
+.show-more {
+	padding-top:10px;
+	cursor: pointer;
+	font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #757575;
+	margin-left: 80px !important;
+}
+</style>
+
+<script>
+function showFullReview(idRev) {
+	var rev = document.getElementById('review-' + idRev);
+	var more = document.getElementById('more-' + idRev);
+	
+	if ((document.getElementById('more-' + idRev).innerHTML) == 'развернуть') { 
+		rev.style.maxHeight = "500px";
+		more.innerHTML = "свернуть"
+	}
+	else {
+		rev.style.maxHeight = "100px";
+		more.innerHTML = "развернуть"
+	}
+}
+</script>
+
+
+
+
+<div data-aos="fade-up">
+  <section class="articles" id="articles">
+      <div class="row">
+          <div class="col-12">
+              <h2>Больше информации об авто из Японии, Китая, Кореи</h2>
+          </div>
+          <div class="col-8 gray-text text-start">
+              Выгодные сделки на автоаукционе: экономия и прозрачность.
+          </div>
+          <!-- <div class="col-4 gray-text text-end see-all">
+              <a href="#" style="color: #191919;">
+                  <span>Смотреть все</span>
+                  <svg style="margin-left: 16px;" width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M17.7806 8.03055L11.0306 14.7806C10.8899 14.9213 10.699 15.0003 10.5 15.0003C10.301 15.0003 10.1101 14.9213 9.96937 14.7806C9.82864 14.6398 9.74958 14.449 9.74958 14.2499C9.74958 14.0509 9.82864 13.86 9.96937 13.7193L15.4397 8.24993H0.75C0.551088 8.24993 0.360322 8.17091 0.21967 8.03026C0.0790178 7.88961 0 7.69884 0 7.49993C0 7.30102 0.0790178 7.11025 0.21967 6.9696C0.360322 6.82895 0.551088 6.74993 0.75 6.74993H15.4397L9.96937 1.28055C9.82864 1.13982 9.74958 0.948952 9.74958 0.749929C9.74958 0.550906 9.82864 0.360034 9.96937 0.219304C10.1101 0.0785732 10.301 -0.000488281 10.5 -0.000488281C10.699 -0.000488281 10.8899 0.0785732 11.0306 0.219304L17.7806 6.9693C17.8504 7.03896 17.9057 7.12168 17.9434 7.21272C17.9812 7.30377 18.0006 7.40137 18.0006 7.49993C18.0006 7.59849 17.9812 7.69609 17.9434 7.78713C17.9057 7.87818 17.8504 7.9609 17.7806 8.03055Z" fill="#191919"/>
+                  </svg>
+              </a>
+          </div> -->
+      </div>
+  
+      <div class="marg-row row">
+          <div class="col-lg-7 col-12 p-col">
+              <div class="linear-overlay linear-overlay-1">
+                  <img src="{%static 'img/articles/1.jpeg' %}">
+                  <div class="article-body">
+                      <h3>Утильсбор-2024</h3>
+                      <div class="d-flex justify-content-between ">
+                          <div class="">
+                              <p>
+                                  как при покупке подержанной машины не заплатить «лишние» 1,5 миллиона?
+                              </p>
+                          </div>
+                          <div class="d-flex align-items-center">
+                              <a href=/article/1>
+                                  <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M17.7806 8.53068L11.0306 15.2807C10.8899 15.4214 10.699 15.5005 10.5 15.5005C10.301 15.5005 10.1101 15.4214 9.96937 15.2807C9.82864 15.1399 9.74958 14.9491 9.74958 14.7501C9.74958 14.551 9.82864 14.3602 9.96937 14.2194L15.4397 8.75005H0.75C0.551088 8.75005 0.360322 8.67103 0.21967 8.53038C0.0790178 8.38973 0 8.19896 0 8.00005C0 7.80114 0.0790178 7.61037 0.21967 7.46972C0.360322 7.32907 0.551088 7.25005 0.75 7.25005H15.4397L9.96937 1.78068C9.82864 1.63995 9.74958 1.44907 9.74958 1.25005C9.74958 1.05103 9.82864 0.860156 9.96937 0.719426C10.1101 0.578695 10.301 0.499634 10.5 0.499634C10.699 0.499634 10.8899 0.578695 11.0306 0.719426L17.7806 7.46943C17.8504 7.53908 17.9057 7.6218 17.9434 7.71285C17.9812 7.80389 18.0006 7.90149 18.0006 8.00005C18.0006 8.09861 17.9812 8.19621 17.9434 8.28726C17.9057 8.3783 17.8504 8.46102 17.7806 8.53068Z" fill="white"/>
+                                  </svg>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+  
+              <div class="linear-overlay linear-overlay-2">
+                  <img src="{%static 'img/articles/2.jpeg' %}">
+                  <div class="article-body">
+                      <h3>Заказать из-за границы или купить у дилера?</h3>
+                      <div class="d-flex justify-content-between ">
+                          <div class="">
+                              <p>
+                                  Плюсы и минусы
+                              </p>
+                          </div>
+                          <div class="d-flex align-items-center">
+                              <a href=/article/2>
+                                  <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M17.7806 8.53068L11.0306 15.2807C10.8899 15.4214 10.699 15.5005 10.5 15.5005C10.301 15.5005 10.1101 15.4214 9.96937 15.2807C9.82864 15.1399 9.74958 14.9491 9.74958 14.7501C9.74958 14.551 9.82864 14.3602 9.96937 14.2194L15.4397 8.75005H0.75C0.551088 8.75005 0.360322 8.67103 0.21967 8.53038C0.0790178 8.38973 0 8.19896 0 8.00005C0 7.80114 0.0790178 7.61037 0.21967 7.46972C0.360322 7.32907 0.551088 7.25005 0.75 7.25005H15.4397L9.96937 1.78068C9.82864 1.63995 9.74958 1.44907 9.74958 1.25005C9.74958 1.05103 9.82864 0.860156 9.96937 0.719426C10.1101 0.578695 10.301 0.499634 10.5 0.499634C10.699 0.499634 10.8899 0.578695 11.0306 0.719426L17.7806 7.46943C17.8504 7.53908 17.9057 7.6218 17.9434 7.71285C17.9812 7.80389 18.0006 7.90149 18.0006 8.00005C18.0006 8.09861 17.9812 8.19621 17.9434 8.28726C17.9057 8.3783 17.8504 8.46102 17.7806 8.53068Z" fill="white"/>
+                                  </svg>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-5 col-12 p-col">
+              <div class="linear-overlay linear-overlay-3">
+                  <img src="{%static 'img/articles/3.jpeg' %}">
+                  <div class="article-body">
+                      <h3 class="w-100">
+                          <a href="/article/3" style="text-decoration: none !important; color: #FFFFFF;">
+                              Санкции не так страшны, как их боятся
+                          </a>
+                      </h3>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+</div>
+
+<div data-aos="fade-up">
+  <section class="advantages">
+      <div class="row">
+          <div class="col-12">
+              <h2>Преимущества покупки с автоаукциона</h2>
+          </div>
+          <div class="col-12 gray-text text-start">
+              Выгодные сделки на автоаукционе:экономия и прозрачность.
+          </div>
+      </div>
+  
+      <div class="marg-row row row-cols-1 row-cols-lg-3">
+          <div class="col">
+              <div class="advantage-body">
+                  <div class="d-flex justify-content-between ">
+                      <div class="advantage-info">
+                          <h4>Большой выбор автомобилей</h4>
+                          <p>На аукционах можно найти огромное разнообразие марок и моделей зарубежных автомобилей.</p>
+                      </div>
+                      <div class="review-img">
+                          <img src="{%static 'img/advantages/1.png' %}" class="review-img">
+                      </div>
+                  </div>
+              </div>
+          </div>
+  
+          <div class="col mt-lg-0 mt-3">
+              <div class="advantage-body">
+                  <div class="d-flex justify-content-between ">
+                      <div class="advantage-info">
+                          <h4>Качество и состояние автомобилей</h4>
+                          <p>Автомобили на аукционах находятся в отличном состоянии и прошли тщательную техническую проверку.</p>
+                      </div>
+                      <div class="review-img">
+                          <img src="{%static 'img/advantages/2.png' %}" class="review-img">
+                      </div>
+                  </div>
+              </div>
+          </div>
+  
+          <div class="col mt-lg-0 mt-3">
+              <div class="advantage-body">
+                  <div class="d-flex justify-content-between ">
+                      <div class="advantage-info">
+                          <h4>Конкурентные цены</h4>
+                          <p>Покупатели могут участвовать в торгах и приобрести автомобиль по более выгодной цене, чем на рынке.</p>
+                      </div>
+                      <div class="review-img">
+                          <img src="{%static 'img/advantages/3.png' %}" class="review-img">
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  
+      <div class="row row-cols-1 row-cols-lg-2" style="margin-top: calc(.5rem * .75 * 2);">
+          <div class="col" style="padding-left: calc(.5rem * .75); padding-right: calc(.5rem * .75);">
+              <div class="advantage-body">
+                  <div class="d-flex justify-content-between ">
+                      <div class="advantage-info">
+                          <h4>Прозрачность и надёжность процесса</h4>
+                          <p>Автомобиль сопровождается подробным аукционным листом, в котором указаны все характеристики и состояние автомобиля.</p>
+                      </div>
+                      <div class="review-img">
+                          <img src="{%static 'img/advantages/4.png' %}" class="review-img">
+                      </div>
+                  </div>
+              </div>
+          </div>
+  
+          <div class="col mt-lg-0 mt-3" style="padding-left: calc(.5rem * .75); padding-right: calc(.5rem * .75);">
+              <div class="advantage-body">
+                  <div class="d-flex justify-content-between ">
+                      <div class="advantage-info">
+                          <h4>Удобство</h4>
+                          <p>Современные технологии позволяют покупателям из разных стран участвовать в японских авто аукционах удалённо.</p>
+                      </div>
+                      <div class="review-img">
+                          <img src="{%static 'img/advantages/5.png' %}" class="review-img">
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  
+  </section>
+</div>
+
+
+<div data-aos="fade-up">
+  <section class="form-feedback">
+    <div class="contacts">
+        <div class="row h-100">
+            <div class="form-contact-click col-xl-7 col-lg-6 col-12">
+                <div class="contact-body d-flex align-items-start flex-column h-100">
+                    <div class="mb-auto w-100 contacts-info-text">
+                        <h2 style="color: #F3F3F3 !important;">Контактная информация</h2>
+                        <div class="gray-text text-start">
+                            Оставьте свою заявку и наш менеджер свяжется с Вами для уточнения деталей.
+                        </div>
+                    </div>
+                    <div class="contacts-info-click">
+                        <div class="row row-cols-sm-2 row-cols-1 align-items-center">
+                            <div class="col-xl-4 col order-sm-6 order-6">
+                                <p>Позвонить</p>
+                                <a href="tel:+79294201720">8 800 550 17 20</a>
+                            </div>
+                            <div class="col-xl-8 col order-sm-1 order-3 inner-links">
+                                <a href="https://2gis.ru/vladivostok/inside/3519072864043713/firm/70000001089263459?m=131.89686%2C43.130451%2F16" target="_blank" style="font-weight: 400;">
+                                    <img src="{%static 'img/social/gis.png' %}">
+                                    Мы на 2гис
+                                </a>
+                            </div>
+                            <div class="col-xl-4 col order-sm-2 order-1">
+                                <p>Написать</p>
+                                <a href="mailto:autocenter25.corp@gmail.com">autocenter25.corp <br>@gmail.com</a>
+                            </div>
+                            <div class="col-xl-8 col order-sm-3 order-4 inner-links">
+                                <a href="#" target="_blank" style="font-weight: 400;">
+                                    <img src="{%static 'img/social/ya.png' %}">
+                                    Яндекс.Карты
+                                </a>
+                            </div>
+                            <div class="col-xl-4 col order-sm-4 order-1">
+                                <p>Адрес</p>
+                                <a href="https://yandex.ru/maps/-/CDfJBS89" target="_blank">г. Владивосток<br>ул. Океанский пр-т 70в, оф. 18</a>
+                            </div>
+                            <div class="col-xl-8 col order-sm-5 order-5 inner-links">
+                                <a href="https://www.vl.ru/autocenter" target="_blank" style="font-weight: 400;">
+                                    <img src="{%static 'img/social/vl.png' %}">
+                                    VL справочник
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-wp col-xl-5 col-lg-6 col-12 h-100"  style="background: #fff; border-radius: 20px 20px 0px 0px;">
+                <div class="">
+                    <h5>Оставить заявку</h5>
+                    <form id="feedback-form-modal" class="feedback-form-form" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-lg-6 col-12">
+                                <label>Имя</label>
+                                {{feedbackForm.name}}
+                            </div>
+                            <div class="col-lg-6 col-12">
+                                <label>Телефон</label>
+                                {{feedbackForm.number}}
+                            </div>
+                            <div class="col-12">
+                                <label>Уточните свой вопрос</label>
+                                {{feedbackForm.message}}
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" onclick="ym(97653553,'reachGoal','YM-form'); return true;">Отправить</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="feedback-form-annotation">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+</div>
+
+
+
+
+<style>
+
+
+</style>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+User-agent: Yandex
+Allow: /
+Allow: /cars_japan/
+Allow: /cars_china/
+Allow: /cars_korea/
+
+Disallow: /car_japan/*
+Disallow: /car_china/*
+Disallow: /car_korea/*
+Disallow: /about_us/
+
+User-agent: *
+Allow: /
+Allow: /cars_japan/
+Allow: /cars_china/
+Allow: /cars_korea/
+
+Disallow: /car_japan/*
+Disallow: /car_china/*
+Disallow: /car_korea/*
+Disallow: /about_us/

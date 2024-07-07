@@ -1,0 +1,628 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load intspace %}
+
+{% block content %}
+
+<section class="catalog">
+    <h2>{{title}}</h2>
+	
+	<div class="row row-col-1" style="padding-right: calc(1.5rem * .5) !important; padding-left: calc(1.5rem * .5) !important">  
+        <button type="button" class="col mob-btn-options" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+			Параметры
+        </button>
+    </div>	
+	
+	<div class="" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header row row-col-3 justify-content-center" id="search-car-header">
+					<div class="col text-start">
+						<button type="button" class="btn-close col text-start" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+					</div>
+					<h5 class="modal-title col text-center" id="staticBackdropLabel">Параметры</h5>
+					
+					<a class="col text-algin-center text-end" href="/cars_japan/">
+						<svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.251 3.5H13.501V2.75C13.501 2.15326 13.2639 1.58097 12.842 1.15901C12.42 0.737053 11.8477 0.5 11.251 0.5H6.75098C6.15424 0.5 5.58194 0.737053 5.15999 1.15901C4.73803 1.58097 4.50098 2.15326 4.50098 2.75V3.5H0.750977C0.552064 3.5 0.361299 3.57902 0.220647 3.71967C0.0799943 3.86032 0.000976563 4.05109 0.000976562 4.25C0.000976563 4.44891 0.0799943 4.63968 0.220647 4.78033C0.361299 4.92098 0.552064 5 0.750977 5H1.50098V18.5C1.50098 18.8978 1.65901 19.2794 1.94032 19.5607C2.22162 19.842 2.60315 20 3.00098 20H15.001C15.3988 20 15.7803 19.842 16.0616 19.5607C16.3429 19.2794 16.501 18.8978 16.501 18.5V5H17.251C17.4499 5 17.6407 4.92098 17.7813 4.78033C17.922 4.63968 18.001 4.44891 18.001 4.25C18.001 4.05109 17.922 3.86032 17.7813 3.71967C17.6407 3.57902 17.4499 3.5 17.251 3.5ZM6.00098 2.75C6.00098 2.55109 6.07999 2.36032 6.22065 2.21967C6.3613 2.07902 6.55206 2 6.75098 2H11.251C11.4499 2 11.6407 2.07902 11.7813 2.21967C11.922 2.36032 12.001 2.55109 12.001 2.75V3.5H6.00098V2.75ZM15.001 18.5H3.00098V5H15.001V18.5ZM7.50098 8.75V14.75C7.50098 14.9489 7.42196 15.1397 7.28131 15.2803C7.14065 15.421 6.94989 15.5 6.75098 15.5C6.55206 15.5 6.3613 15.421 6.22065 15.2803C6.07999 15.1397 6.00098 14.9489 6.00098 14.75V8.75C6.00098 8.55109 6.07999 8.36032 6.22065 8.21967C6.3613 8.07902 6.55206 8 6.75098 8C6.94989 8 7.14065 8.07902 7.28131 8.21967C7.42196 8.36032 7.50098 8.55109 7.50098 8.75ZM12.001 8.75V14.75C12.001 14.9489 11.922 15.1397 11.7813 15.2803C11.6407 15.421 11.4499 15.5 11.251 15.5C11.0521 15.5 10.8613 15.421 10.7206 15.2803C10.58 15.1397 10.501 14.9489 10.501 14.75V8.75C10.501 8.55109 10.58 8.36032 10.7206 8.21967C10.8613 8.07902 11.0521 8 11.251 8C11.4499 8 11.6407 8.07902 11.7813 8.21967C11.922 8.36032 12.001 8.55109 12.001 8.75Z" fill="#191919"/>
+              </svg>
+					</a>
+				</div>
+				<div class="modal-body">
+					<form method="get" class="filter" id="filter-form"> <!-- catalog-filter -->
+						<div class="filter-row row row-cols-lg-4 row-cols-md-3 row-cols-1 justify-content-center">
+							<div class="col">
+								<div class="dropdown">
+									<a class="btn filter-item" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="brand-dropdown">
+										<span class="float-start" data-def="Марка авто">
+											{% with value=filter_form.brand.value %}
+												{% if value %}
+													{{ value }}
+												{% else %}
+													Марка авто
+												{% endif %}
+											{% endwith %}
+										</span>
+										<span class="float-end">
+											<svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M10.9536 1.35378L5.95364 6.35378C5.9072 6.40027 5.85206 6.43715 5.79136 6.46231C5.73066 6.48748 5.6656 6.50043 5.59989 6.50043C5.53418 6.50043 5.46912 6.48748 5.40842 6.46231C5.34772 6.43715 5.29257 6.40027 5.24614 6.35378L0.246137 1.35378C0.152317 1.25996 0.0996094 1.13272 0.0996094 1.00003C0.0996094 0.867352 0.152317 0.740104 0.246137 0.646284C0.339958 0.552463 0.467205 0.499756 0.599887 0.499756C0.732569 0.499756 0.859817 0.552463 0.953637 0.646284L5.59989 5.29316L10.2461 0.646284C10.2926 0.599829 10.3477 0.562978 10.4084 0.537837C10.4691 0.512696 10.5342 0.499756 10.5999 0.499756C10.6656 0.499756 10.7306 0.512696 10.7913 0.537837C10.852 0.562978 10.9072 0.599829 10.9536 0.646284C11.0001 0.692739 11.0369 0.747889 11.0621 0.808586C11.0872 0.869282 11.1002 0.934336 11.1002 1.00003C11.1002 1.06573 11.0872 1.13079 11.0621 1.19148C11.0369 1.25218 11.0001 1.30733 10.9536 1.35378Z" fill="#757575"/>
+											</svg>
+										</span>
+									</a>
+									<ul class="dropdown-menu w-100">
+										{% for choice in filter_form.brand.field.choices %}
+										<li><a class="dropdown-item" href="#" onclick="setField('brand', '{{ choice.0 }}', '{{ choice.1 }}')">{{ choice.1 }}</a></li>
+											{% if choice.1 == "Любое" %}
+											<li><hr class="dropdown-divider"></li>
+											{% endif %}
+										{% endfor %}
+									</ul>
+								</div>
+								{{ filter_form.brand }}
+							</div>
+							
+							<div class="col">
+								<div class="dropdown">
+									<a class="btn filter-item" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="model-dropdown">
+										<span class="float-start" data-def="Модель авто">
+											{% with value=filter_form.model.value %}
+												{% if value %}
+													{{ value }}
+												{% else %}
+													Модель авто
+												{% endif %}
+											{% endwith %}
+										</span>
+										<span class="float-end">
+											<svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M10.9536 1.35378L5.95364 6.35378C5.9072 6.40027 5.85206 6.43715 5.79136 6.46231C5.73066 6.48748 5.6656 6.50043 5.59989 6.50043C5.53418 6.50043 5.46912 6.48748 5.40842 6.46231C5.34772 6.43715 5.29257 6.40027 5.24614 6.35378L0.246137 1.35378C0.152317 1.25996 0.0996094 1.13272 0.0996094 1.00003C0.0996094 0.867352 0.152317 0.740104 0.246137 0.646284C0.339958 0.552463 0.467205 0.499756 0.599887 0.499756C0.732569 0.499756 0.859817 0.552463 0.953637 0.646284L5.59989 5.29316L10.2461 0.646284C10.2926 0.599829 10.3477 0.562978 10.4084 0.537837C10.4691 0.512696 10.5342 0.499756 10.5999 0.499756C10.6656 0.499756 10.7306 0.512696 10.7913 0.537837C10.852 0.562978 10.9072 0.599829 10.9536 0.646284C11.0001 0.692739 11.0369 0.747889 11.0621 0.808586C11.0872 0.869282 11.1002 0.934336 11.1002 1.00003C11.1002 1.06573 11.0872 1.13079 11.0621 1.19148C11.0369 1.25218 11.0001 1.30733 10.9536 1.35378Z" fill="#757575"/>
+											</svg>
+										</span>
+									</a>					
+									<ul class="dropdown-menu w-100">
+										{% for choice in filter_form.model.field.choices %}
+										<li><a class="dropdown-item" href="#" onclick="setField('model', '{{ choice.0 }}', '{{ choice.1 }}')">{{ choice.1 }}</a></li>
+											{% if choice.1 == "Любое" %}
+											<li><hr class="dropdown-divider"></li>
+											{% endif %}
+										{% endfor %}
+									</ul>
+								</div>
+								{{ filter_form.model }}
+							</div>
+
+							<div class="col">
+								<div class="input-group">
+									{{ filter_form.mileage_min }}
+									{{ filter_form.mileage_max }}
+								</div>
+							</div>
+
+							<div class="col">
+								<div class="input-group">
+									{{ filter_form.engine_volume_min }}
+									{{ filter_form.engine_volume_max }}
+								</div>
+							</div>
+
+							<div class="col">
+								<div class="dropdown">
+									<a class="btn filter-item" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="drive-dropdown">
+										<span class="float-start" data-def="Привод">
+											{% with value=filter_form.drive.value %}
+												{% if value %}
+													{{ value }}
+												{% else %}
+													Привод
+												{% endif %}
+											{% endwith %}
+										</span>
+										<span class="float-end">
+											<svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M10.9536 1.35378L5.95364 6.35378C5.9072 6.40027 5.85206 6.43715 5.79136 6.46231C5.73066 6.48748 5.6656 6.50043 5.59989 6.50043C5.53418 6.50043 5.46912 6.48748 5.40842 6.46231C5.34772 6.43715 5.29257 6.40027 5.24614 6.35378L0.246137 1.35378C0.152317 1.25996 0.0996094 1.13272 0.0996094 1.00003C0.0996094 0.867352 0.152317 0.740104 0.246137 0.646284C0.339958 0.552463 0.467205 0.499756 0.599887 0.499756C0.732569 0.499756 0.859817 0.552463 0.953637 0.646284L5.59989 5.29316L10.2461 0.646284C10.2926 0.599829 10.3477 0.562978 10.4084 0.537837C10.4691 0.512696 10.5342 0.499756 10.5999 0.499756C10.6656 0.499756 10.7306 0.512696 10.7913 0.537837C10.852 0.562978 10.9072 0.599829 10.9536 0.646284C11.0001 0.692739 11.0369 0.747889 11.0621 0.808586C11.0872 0.869282 11.1002 0.934336 11.1002 1.00003C11.1002 1.06573 11.0872 1.13079 11.0621 1.19148C11.0369 1.25218 11.0001 1.30733 10.9536 1.35378Z" fill="#757575"/>
+											</svg>
+										</span>
+									</a>
+									<ul class="dropdown-menu w-100">
+										{% for choice in filter_form.drive.field.choices %}
+										<li><a class="dropdown-item" href="#" onclick="setField('drive', '{{ choice.0 }}', '{{ choice.1 }}')">{{ choice.1 }}</a></li>
+											{% if choice.1 == "Любое" %}
+											<li><hr class="dropdown-divider"></li>
+											{% endif %}
+										{% endfor %}
+									</ul>
+								</div>
+								{{ filter_form.drive }}
+							</div>
+							
+							<div class="col">
+								<div class="input-group">
+									{{ filter_form.year_min }}
+									{{ filter_form.year_max }}
+								</div>
+							</div>
+
+							<div class="col">
+								<div class="dropdown">
+									<a class="btn filter-item" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="transmission-dropdown">
+										<span class="float-start" data-def="Тип КПП">
+											{% with value=filter_form.transmission.value %}
+												{% if value %}
+													{{ value }}
+												{% else %}
+													Тип КПП
+												{% endif %}
+											{% endwith %}
+										</span>
+										<span class="float-end">
+											<svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M10.9536 1.35378L5.95364 6.35378C5.9072 6.40027 5.85206 6.43715 5.79136 6.46231C5.73066 6.48748 5.6656 6.50043 5.59989 6.50043C5.53418 6.50043 5.46912 6.48748 5.40842 6.46231C5.34772 6.43715 5.29257 6.40027 5.24614 6.35378L0.246137 1.35378C0.152317 1.25996 0.0996094 1.13272 0.0996094 1.00003C0.0996094 0.867352 0.152317 0.740104 0.246137 0.646284C0.339958 0.552463 0.467205 0.499756 0.599887 0.499756C0.732569 0.499756 0.859817 0.552463 0.953637 0.646284L5.59989 5.29316L10.2461 0.646284C10.2926 0.599829 10.3477 0.562978 10.4084 0.537837C10.4691 0.512696 10.5342 0.499756 10.5999 0.499756C10.6656 0.499756 10.7306 0.512696 10.7913 0.537837C10.852 0.562978 10.9072 0.599829 10.9536 0.646284C11.0001 0.692739 11.0369 0.747889 11.0621 0.808586C11.0872 0.869282 11.1002 0.934336 11.1002 1.00003C11.1002 1.06573 11.0872 1.13079 11.0621 1.19148C11.0369 1.25218 11.0001 1.30733 10.9536 1.35378Z" fill="#757575"/>
+											</svg>
+										</span>
+									</a>
+									<ul class="dropdown-menu w-100">
+										{% for choice in filter_form.transmission.field.choices %}
+										<li><a class="dropdown-item" href="#" onclick="setField('transmission', '{{ choice.0 }}', '{{ choice.1 }}')">{{ choice.1 }}</a></li>
+											{% if choice.1 == "Любое" %}
+											<li><hr class="dropdown-divider"></li>
+											{% endif %}
+										{% endfor %}
+									</ul>
+								</div>
+								{{ filter_form.transmission }}
+							</div>
+
+							<div class="col">
+								<div class="dropdown">
+									<a class="btn filter-item" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="color-dropdown">
+										<span class="float-start" data-def="Цвет">				
+											{% with value=filter_form.color.value %}
+												{% if value %}
+													{{ value }}
+												{% else %}
+													Цвет
+												{% endif %}
+											{% endwith %}
+										</span>
+										<span class="float-end">
+											<svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M10.9536 1.35378L5.95364 6.35378C5.9072 6.40027 5.85206 6.43715 5.79136 6.46231C5.73066 6.48748 5.6656 6.50043 5.59989 6.50043C5.53418 6.50043 5.46912 6.48748 5.40842 6.46231C5.34772 6.43715 5.29257 6.40027 5.24614 6.35378L0.246137 1.35378C0.152317 1.25996 0.0996094 1.13272 0.0996094 1.00003C0.0996094 0.867352 0.152317 0.740104 0.246137 0.646284C0.339958 0.552463 0.467205 0.499756 0.599887 0.499756C0.732569 0.499756 0.859817 0.552463 0.953637 0.646284L5.59989 5.29316L10.2461 0.646284C10.2926 0.599829 10.3477 0.562978 10.4084 0.537837C10.4691 0.512696 10.5342 0.499756 10.5999 0.499756C10.6656 0.499756 10.7306 0.512696 10.7913 0.537837C10.852 0.562978 10.9072 0.599829 10.9536 0.646284C11.0001 0.692739 11.0369 0.747889 11.0621 0.808586C11.0872 0.869282 11.1002 0.934336 11.1002 1.00003C11.1002 1.06573 11.0872 1.13079 11.0621 1.19148C11.0369 1.25218 11.0001 1.30733 10.9536 1.35378Z" fill="#757575"/>
+											</svg>
+										</span>
+									</a>
+									<ul class="dropdown-menu w-100">
+										{% for choice in filter_form.color.field.choices %}
+										<li><a class="dropdown-item" href="#" onclick="setField('color', '{{ choice.0 }}', '{{ choice.1 }}')">{{ choice.1 }}</a></li>
+											{% if choice.1 == "Любое" %}
+											<li><hr class="dropdown-divider"></li>
+											{% endif %}
+										{% endfor %}
+									</ul>
+								</div>
+								{{ filter_form.color }}
+							</div>
+
+						</div>
+
+						<div class="d-flex flex-row mt-3 buttons-filter align-items-center">
+						  <button class="btn">Показать</button>
+						  <a href="{% url link_url %}" class="btn">Сбросить</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	{%if cars %}
+    <div class="marg-row row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4">
+        {% for car in cars %}
+            <div class="col">
+                <div class="auto-card">
+					{% if car_link == "car_korea" %}
+                    <a href="/{{car_link}}/{{car.id}}">
+                        <img src="/media/{{car.photos.all.0}}" class="image-placeholder" alt="{{car.brand}} {{car.model}}">
+                    </a>
+					{% else %}
+                    <a href="/{{ car_link }}/{{car.api_id}}">
+                        <img src="{{car.photos.0}}" class="image-placeholder" alt="{{car.brand}} {{car.model}}">
+                    </a>
+					
+					{% endif %}
+                    <div class="car-info">
+                        <h3 class="my-0">{{car.brand}} {{car.model}}</h3>
+                        <p>{{car.year}} • {{car.engine_volume}} cc • 
+						{% if car.drive %}
+							{{car.drive}}
+						{% else %}
+							n/a
+						{% endif %}
+						• 
+						{% if car.mileage %}
+							{{car.mileage|intspace}} км
+						{% else %}
+							n/a
+						{% endif %}
+						</p>
+                        <div class="d-flex justify-content-between align-items-center adapt-auto-info">
+                            <span class="mb-sm-0 mb-2">
+								{% if car.price != 0 %}
+									{{car.price|intspace}} ₽
+								{% else %}
+									Уточнить цену
+								{%endif%}
+							</span>
+                            <button class="btn submit-app"  data-bs-toggle="modal" data-bs-target="#mainFeedBackModal" onclick="setModalInput('Я заинтересовался автомобилем {{car.brand}} {{car.model}} {{car.year}}')">Оставить заявку</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		{% endfor %}
+		 </div>
+      
+    
+
+    <div class="pagination d-flex align-items-center float-end">
+        {% if page_obj.number > 2 %}
+            <a href="?page=1&{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}">1</a>
+            {% if page_obj.number > 3 %}
+                <span>...</span>
+            {% endif %}
+        {% endif %}
+    
+        {% for num in page_obj.paginator.page_range %}
+            {% if num == page_obj.number %}
+                <span class="current-page">{{ num }}</span>
+            {% elif num >= page_obj.number|add:-1 and num <= page_obj.number|add:1 %}
+                <a href="?page={{ num }}&{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+    
+        {% if page_obj.number < page_obj.paginator.num_pages|add:-1 %}
+            {% if page_obj.number < page_obj.paginator.num_pages|add:-2 %}
+                <span>...</span>
+            {% endif %}
+            <a href="?page={{ page_obj.paginator.num_pages }}&{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}">{{ page_obj.paginator.num_pages }}</a>
+        {% endif %}
+    
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}&{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}">Следующая</a>
+        {% endif %}
+    </div>
+	
+	{% else %}
+        <div class="not-found-car d-flex flex-column justify-content-center align-items-center">
+          <img  src="{%static 'img/not-found-car.png' %}" alt="img">
+          <p>К сожалению, по заданным параметрам ничего не найдено. Попробуйте изменить условия поиска.</p>
+          <a href="{% url link_url %}" class="btn">Сбросить параметры</a>
+        </div>
+    {% endif %}
+
+</section>
+
+
+<script type="text/javascript" src="{%static 'js/filter.js' %}"></script>
+
+
+
+<script>
+	// Ограничение количества цифр при вводе в input[type='number']
+	function limitCharacters(_input, dig, event) {
+		if (_input.value.length >= dig) {
+			event.preventDefault(); 
+		}
+	}
+</script>
+
+<script>
+	document.querySelectorAll('.dropdown .float-start').forEach(function(elm) {
+		if (["Марка авто", "Модель авто", "Привод", "Тип КПП", "Цвет"].indexOf(elm.innerHTML.trim()) >= 0) {
+			elm.style.fontWeight = "400";
+		} 
+		else {
+			elm.style.fontWeight = "600";
+		}
+	});
+</script>
+
+
+<!-- Скрип для работы dropdown -->
+<script>	
+    function getBrandFromURL() {
+        var url = new URL(window.location.href);
+        return url.searchParams.get("brand");
+    }
+	
+    var brand = getBrandFromURL();	
+	if (brand) {
+        fetchModels(brand);
+    }
+
+    function fetchModels(brand) {
+		// Сохранение текущего значения модели
+		var currentModelValue = document.querySelector('#model-dropdown span').innerHTML.trim();
+		// Очистка старых элементов
+		document.querySelectorAll('#model-dropdown + .dropdown-menu.w-100 li').forEach(function(element) {
+			element.remove();
+		});
+		var dropdownMenu = document.querySelector('#model-dropdown + .dropdown-menu.w-100');	
+		
+		
+        // Очистка старых опций в select, кроме "Любое"
+        var select = document.querySelector('[name="model"]');
+
+        //Создание пункта Любое-hr-Любое
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.className = 'dropdown-item';
+        a.href = '#';
+        a.textContent = "Любое";
+        a.onclick = function() {
+            setField('model', "", "Любое");
+        };
+        li.appendChild(a);
+        dropdownMenu.appendChild(li);
+        
+        var li = document.createElement('li');
+        var hr = document.createElement('hr');
+        hr.className = 'dropdown-divider';
+        hr.textContent = "";
+        hr.onclick = function() {
+            setField('model', "", "");
+        };
+        li.appendChild(hr);
+        dropdownMenu.appendChild(li);
+
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.className = 'dropdown-item';
+        a.href = '#';
+		
+        li.appendChild(a);
+        dropdownMenu.appendChild(li);
+
+        // Добавление опции в select с name="model"
+        var option = document.createElement('option');
+		
+		$.ajax({
+            url: `{{ url_api }}${brand}/`,
+            method: 'GET',
+            success: function(data) {
+				var dropdownMenu = document.querySelector('#model-dropdown + .dropdown-menu.w-100');
+
+                data.forEach(function(model) {
+                    var li = document.createElement('li');
+                    var a = document.createElement('a');
+                    a.className = 'dropdown-item';
+                    a.href = '#';
+                    a.textContent = model;
+                    a.onclick = function() {
+                        setField('model', model, model);
+                    };
+                    li.appendChild(a);
+                    dropdownMenu.appendChild(li);
+
+                    // Добавление опции в select с name="model"
+                    var option = document.createElement('option');
+                    option.value = model;
+                    option.text = model;
+                    select.add(option);
+                });
+
+                // Восстановление текущего значения модели				
+				if (data.indexOf(currentModelValue) !== -1) {
+					select.value = currentModelValue;
+				}
+				else {
+					setField('model', "Модель авто", "Модель авто");
+				}
+				
+                console.log(`Current model value set to: ${currentModelValue}`);  // Для отладки
+            },
+            error: function(error) {
+                console.error("Ошибка при запросе моделей: ", error);
+            }
+        });
+    }
+
+    function setField(field, value, text) {
+		var form = document.getElementById('filter-form');
+	
+        var input = form.querySelector(`[name=${field}]`);
+        input.value = value;
+		
+        if (field == "brand") {
+            if (value == "") {
+                // Очистка select с name="model"
+                var select = document.querySelector('[name="model"]');
+				setField('model', "Модель авто", "Модель авто");
+            } 
+			else {
+                fetchModels(value);
+            }
+        }
+		
+		// Обновить текст в кнопке dropdown
+		var dropdown = document.getElementById(`${field}-dropdown`);
+		var span = dropdown.querySelector('span.float-start');
+		
+		if (text !== "Любое" && text !== "Модель авто") {
+			span.style.fontWeight = "600";
+		}
+		else {
+			if (field === "brand") { text = "Марка авто" }
+			else if (field === "model") { text = "Модель авто" }
+			else if (field === "color") { text = "Цвет" }
+			else if (field === "transmission") { text = "Тип КПП" }
+			else if (field === "drive") { text = "Привод" }
+			
+			span.style.fontWeight = "400";
+		}
+		span.textContent = text;
+    };
+</script>
+
+<style>
+    .hidden-select {
+        display: none;
+    }
+    .dropdown-menu {
+        max-height: 250px;
+        overflow-y: auto;
+    }
+
+	.image-placeholder {
+		background: #F8F8F8;
+	}	
+
+  .not-found-car {
+    margin-top: 47px;
+  }
+
+  .not-found-car >* {
+    margin-bottom: 20px;
+  }
+
+  .not-found-car >*:last-child {
+    margin-bottom: 0px;
+  }
+
+  .not-found-car p {
+    max-width: 403px;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .not-found-car .btn {
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 24px;
+    background-color: #303030;
+    color: #FFFFFF;
+  }
+
+  .catalog {
+    margin-bottom: 189px;
+  }
+
+  .catalog h2 {
+    margin-bottom: 24px !important;
+  }
+
+  .buttons-filter button {
+    font-size: 14px;
+    font-weight: 700;
+
+    color: #FFFFFF;
+    background-color: #303030;
+    padding: 12px 60px;
+    margin-right: 24px;
+    border-radius: 12px;
+  }
+
+  .buttons-filter button:hover {
+    color: #FFFFFF;
+    background-color: #EB1C24;
+  }
+
+  .buttons-filter a {
+    text-align: center;
+    color: #1673FE;
+  }
+
+  .filter-type {
+    padding: 16px;
+    margin-top: 32px;
+    background-color: #F8F8F8;
+    border-radius: 12px;
+  }
+
+  .filter-type span{
+    margin-right: 10px;
+  }
+
+  .hidden-select {
+      display: none;
+  }
+
+  .pagination {
+    margin-top: 20px;
+  }
+
+  .pagination a {
+    text-decoration: none;
+  }
+
+  .mob-btn-filter-type {
+    display: none;
+    padding: 12px;
+    border: 0px;
+    border-radius: 12px;
+    background-color: #F8F8F8;
+  }
+
+  .mob-btn-options {
+    display: none;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    padding: 14px 95px;
+    color: #FFFFFF;
+    border-radius: 12px;
+    border: 0px;
+    background-color: #303030;
+  }
+
+  @media (max-width: 576px) {
+    .modal-header {
+      margin: 0px !important;
+    }
+
+    .modal-header h5 {
+      font-weight: 700;
+      font-size: 18px;
+    } 
+    
+    .modal-body {
+      padding: 0px;
+      border-radius: 0px;
+    }
+
+    .catalog .filter {
+    border-radius: 0px;
+    }
+
+    .catalog-filter {
+      display: none;
+    }
+
+    .btn-filter-type {
+      display: none;
+    }
+
+    .mob-btn-filter-type {
+      display: inline-block;
+      margin-right: 16px;
+    }
+  
+    .mob-btn-options {
+      display: inline-block;
+    }
+
+    .buttons-filter a {
+      display: none;
+    }
+
+    .buttons-filter button {
+      flex: 1 0 100%;
+      max-width: 100%;
+      margin-right: 0px;
+      background-color: #EB1C24;
+    }
+  }
+</style>
+
+{% include 'feedback.html' %} 
+
+{% endblock %}

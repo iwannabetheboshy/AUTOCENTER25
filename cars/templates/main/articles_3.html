@@ -1,0 +1,115 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="page-articles">
+  <h3 class="articles__main-title">
+	Так ли страшны санкции на ввоз авто, как их преподносят
+	<hr size="2px">
+  </h3>
+
+  <div class="articles__text">
+    <p>Давайте разберём санкции от 2-х стран:
+    <p>1. Автомобили из Японии с объёмом двигателя свыше 1.9 литра, гибриды и электро до сих пор находятся под санкциями, но что делать если хочется автомобиль именно попавший в список санкционных? Во первых: подождать придётся автомобиль от стандартных 3-4 недель ориентировочно 2-3 месяц, при этом соответственно и платить за авто в Японию по инвойсу не получится, только иным способом, плюс ко всему стоимость доставки в разы будет дороже в отличии от не санкционного автомобиля, но при это стоимость самих авто под действием санкций так же опустилась на аукционах и если рассмотреть такие на рынке, то экономия тоже колоссальная, отсюда конечно по нашему мнению лучше уже подождать, и сэкономить, нежели переплачивать за уже ввезённый авто. Риск дело благородное, конечно каждый относится к этому по разному, тут выбор у каждого личных, ждать или переплачивать.
+	</p>
+	
+	<p>2.	Автомобили из Южной Кореи с объёмом свыше 2х литров тоже попали под санкции, но корейцы не так педантичны, как японцы, поэтому тут всё немного проще, главный критерий это оплата не через банк, а сроки доставки никак не изменились, так же 2-3 недели, все автомобили возятся, как и возились и рисков практически нет. 
+	</p>
+	
+	<p>Поэтому дорогие приобретатели автомобилей, не нужно бояться санкций, мы давно привыкли жить в условиях их. 
+	</p>
+</section>
+
+<style>
+  .page-articles {
+    /*padding: 0px 100px !important;*/
+	margin-top: 134px;
+  }
+  
+  @media (max-width: 1200px) {
+    .page-articles {
+        margin-top: 75px;
+    }
+}
+.
+
+  @media(max-width: 1448px) {
+    .page-articles {
+      padding: 0px 40px !important;
+    }
+  }
+
+  @media(max-width: 500px) {
+    .page-articles {
+      padding: 0px 20px !important;
+    }
+  }
+
+  .articles__main-title {
+    text-align: center;
+    padding: 15px 100px 36px 100px;
+  }
+
+  @media(max-width: 873px) {
+    .articles__main-title {
+      padding: 15px 40px 36px 40px;
+    }
+  }
+
+  @media(max-width: 500px) {
+    .articles__main-title {
+      padding: 15px 20px 25px 20px;
+    }
+  }
+
+  .articles__text {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    color: #191919;
+  }
+
+  @media(max-width: 500px) {
+    .articles__text {
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
+ 
+  .block-with-photo {
+    max-width: 100%;
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+  .block-with-photo__img {
+    max-width: 100%;
+  }
+
+  .block-with-photo__description {
+    padding: 10px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+  }
+
+  @media(max-width: 873px) { 
+    .block-with-photo__description {
+      font-size: 10px;
+      line-height: 14px;
+    }
+  }
+
+  .source-articles {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    color: #191919;
+  }
+
+  .source-articles p {
+    margin-bottom: 0px;
+  }
+</style>
+{% endblock %}

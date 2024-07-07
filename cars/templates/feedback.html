@@ -1,0 +1,82 @@
+{% load static %}
+
+<section class="form-feedback">
+    <div class="contacts">
+        <div class="row h-100">
+            <div class="form-contact-click col-xl-7 col-lg-6 col-12">
+                <div class="contact-body d-flex align-items-start flex-column h-100">
+                    <div class="mb-auto w-100 contacts-info-text">
+                        <h2 style="color: #F3F3F3 !important;">Контактная информация</h2>
+                        <div class="gray-text text-start">
+                            Оставьте свою заявку и наш менеджер свяжется с Вами для уточнения деталей.
+                        </div>
+                    </div>
+                    <div class="contacts-info-click">
+                        <div class="row row-cols-sm-2 row-cols-1 align-items-center">
+                            <div class="col-xl-4 col order-sm-6 order-6">
+                                <p>Позвонить</p>
+                                <a href="tel:+79294201720">8 800 550 17 20</a>
+                            </div>
+                            <div class="col-xl-8 col order-sm-1 order-3 inner-links">
+                                <a href="https://2gis.ru/vladivostok/inside/3519072864043713/firm/70000001089263459?m=131.89686%2C43.130451%2F16" target="_blank" style="font-weight: 400;">
+                                    <img src="{%static 'img/social/gis.png' %}" alt="icon">
+                                    Мы на 2гис
+                                </a>
+                            </div>
+                            <div class="col-xl-4 col order-sm-2 order-1">
+                                <p>Написать</p>
+                                <a href="mailto:autocenter25.corp@gmail.com">autocenter25.corp <br>@gmail.com</a>
+                            </div>
+                            <div class="col-xl-8 col order-sm-3 order-4 inner-links">
+                                <a href="https://yandex.ru/profile/86796260610" target="_blank" style="font-weight: 400;">
+                                    <img src="{%static 'img/social/ya.png' %}" alt="icon">
+                                    Яндекс.Карты
+                                </a>
+                            </div>
+                            <div class="col-xl-4 col order-sm-4 order-1">
+                                <p>Адрес</p>
+                                <a href="https://2gis.ru/vladivostok/inside/3519072864043713/firm/70000001089263459?m=131.89686%2C43.130451%2F16" target="_blank">г. Владивосток<br>ул. Океанский пр-т 70в, оф. 18</a>
+                            </div>
+                            <div class="col-xl-8 col order-sm-5 order-5 inner-links">
+                                <a href="https://www.vl.ru/autocenter" target="_blank" style="font-weight: 400;">
+                                    <img src="{%static 'img/social/vl.png' %}" alt="icon">
+                                    VL справочник
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-wp col-xl-5 col-lg-6 col-12 h-100"  style="background: #fff; border-radius: 20px 20px 0px 0px;">
+                <div class="">
+                    <h5>Оставить заявку</h5>
+                    <form id="feedback-form-modal" class="feedback-form-form" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-lg-6 col-12">
+                                <label>Имя</label>
+                                {{feedbackForm.name}}
+                            </div>
+                            <div class="col-lg-6 col-12">
+                                <label>Телефон</label>
+                                {{feedbackForm.number}}
+                            </div>
+                            <div class="col-12">
+                                <label>Уточните свой вопрос</label>
+                                {{feedbackForm.message}}
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" onclick="ym(97653553,'reachGoal','YM-form'); return true;">Отправить</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="feedback-form-annotation">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

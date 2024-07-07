@@ -1,0 +1,764 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    {% if request.path == "/cars_japan/" %}
+    <title>
+      Заказать авто с аукциона Японии с ПТС во Владивостоке - Автоцентр
+    </title>
+    <meta
+      name="description"
+      content="Хотите купить автомобили с японских автоаукционов с пробегом? Авто из Японии под ключ! Предоставляем помощь в подборе авто, занимаемся растаможкой и оформлением документов."
+    />
+    {% elif request.path == "/cars_china/" %}
+    <title>Автомобили с китайских аукционов во Владивостоке - Автоцентр</title>
+    <meta
+      name="description"
+      content="Хотите купить авто из Китая 2023-2024 года? Каталог с ценами и фото на нашем сайте. Автомобили под заказ с доставкой в регионы РФ. Подбор, растаможка и оформление документов."
+    />
+    {% elif request.path == "/cars_korea/" %}
+    <title>Авто из Кореи с аукциона под ключ во Владивостоке - Автоцентр</title>
+    <meta
+      name="description"
+      content="Хотите купить корейский автомобиль? Широкий выбор авто с пробегом с корейских аукционов на нашем сайте. Подбор, растаможка и оформление документов."
+    />
+    {% else %}
+    <title>
+      Авто с аукционов под выкуп во Владивостоке с доставкой по РФ - Автоцентр
+    </title>
+    <meta
+      name="description"
+      content="Предоставляем широкий выбор авто с аукционов Японии, Кореи и Китая. В каталоге леворульные автомобили с пробегом под заказ. Есть авто в наличии! Предоставляем услуги растаможки."
+    />
+    {% endif %}
+
+    <meta name="keywprds" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="yandex-verification" content="c9262006712e662b" />
+    <meta
+      name="google-site-verification"
+      content="Dk0ZIiq5MMsfarHSXnPz2JPhWUhH85WjsFEifrJqqm0"
+    />
+
+    <link type="image/x-icon" href="{%static 'img/favicon.ico' %}" rel="icon" />
+    <link type="text/css" href="{%static 'css/style.css' %}" rel="stylesheet" />
+    <link
+      type="text/css"
+      href="{%static 'vendor/bootstrap.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      type="text/css"
+      href="{%static 'vendor/slick.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      type="text/css"
+      href="{%static 'vendor/aos.css' %}"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="text/javascript" src="{%static 'vendor/aos.js' %}"></script>
+    <script
+      type="text/javascript"
+      src="{%static 'vendor/jquery.js' %}"
+    ></script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+      (function (m, e, t, r, i, k, a) {
+        m[i] =
+          m[i] ||
+          function () {
+            (m[i].a = m[i].a || []).push(arguments);
+          };
+        m[i].l = 1 * new Date();
+        for (var j = 0; j < document.scripts.length; j++) {
+          if (document.scripts[j].src === r) {
+            return;
+          }
+        }
+        (k = e.createElement(t)),
+          (a = e.getElementsByTagName(t)[0]),
+          (k.async = 1),
+          (k.src = r),
+          a.parentNode.insertBefore(k, a);
+      })(
+        window,
+        document,
+        "script",
+        "https://mc.yandex.ru/metrika/tag.js",
+        "ym"
+      );
+
+      ym(97653553, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true,
+      });
+    </script>
+    <noscript
+      ><div>
+        <img
+          src="https://mc.yandex.ru/watch/97653553"
+          style="position: absolute; left: -9999px"
+          alt=""
+        /></div
+    ></noscript>
+    <!-- /Yandex.Metrika counter -->
+  </head>
+    
+  <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+  <div class="elfsight-app-2bfec592-e154-40c4-b747-25d911aef82d" data-elfsight-app-lazy></div>
+
+  <header class="nav-down">
+    <nav class="navbar navbar-expand-xl">
+      <div class="test d-flex flex-wrap align-items-center">
+        <button
+          class="col-1 navbar-toggler button-navbar-custom collapsed px-0"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          style="padding-right: calc(1.5rem * 1) !important"
+        >
+          <svg
+            width="18"
+            height="14"
+            viewBox="0 0 18 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18.0011 7C18.0011 7.19891 17.922 7.38968 17.7814 7.53033C17.6407 7.67098 17.45 7.75 17.2511 7.75H0.751053C0.55214 7.75 0.361375 7.67098 0.220723 7.53033C0.0800706 7.38968 0.00105286 7.19891 0.00105286 7C0.00105286 6.80109 0.0800706 6.61032 0.220723 6.46967C0.361375 6.32902 0.55214 6.25 0.751053 6.25H17.2511C17.45 6.25 17.6407 6.32902 17.7814 6.46967C17.922 6.61032 18.0011 6.80109 18.0011 7ZM0.751053 1.75H17.2511C17.45 1.75 17.6407 1.67098 17.7814 1.53033C17.922 1.38968 18.0011 1.19891 18.0011 1C18.0011 0.801088 17.922 0.610322 17.7814 0.46967C17.6407 0.329018 17.45 0.25 17.2511 0.25H0.751053C0.55214 0.25 0.361375 0.329018 0.220723 0.46967C0.0800706 0.610322 0.00105286 0.801088 0.00105286 1C0.00105286 1.19891 0.0800706 1.38968 0.220723 1.53033C0.361375 1.67098 0.55214 1.75 0.751053 1.75ZM17.2511 12.25H0.751053C0.55214 12.25 0.361375 12.329 0.220723 12.4697C0.0800706 12.6103 0.00105286 12.8011 0.00105286 13C0.00105286 13.1989 0.0800706 13.3897 0.220723 13.5303C0.361375 13.671 0.55214 13.75 0.751053 13.75H17.2511C17.45 13.75 17.6407 13.671 17.7814 13.5303C17.922 13.3897 18.0011 13.1989 18.0011 13C18.0011 12.8011 17.922 12.6103 17.7814 12.4697C17.6407 12.329 17.45 12.25 17.2511 12.25Z"
+              fill="#191919"
+            />
+          </svg>
+        </button>
+        <div
+          class="logo-switch col-2 col-xxl-3 mb-2 mb-md-0"
+          style="padding-left: calc(1.5rem * 0.5) !important"
+        >
+          <a href="/">
+            <img
+              id="logo-switch"
+              src="{% static 'img/logo.png' %}"
+              alt="logo"
+            />
+          </a>
+        </div>
+
+        <div
+          class="navbar-collapse row gx-0 flex-xl-row flex-column justify-content-center align-items-xl-center align-items-start collapse"
+          id="navbarNav"
+        >
+          <ul
+            class="nav col order-xl-1 order-3 col-md-auto mb-2 justify-content-center mb-md-0 py-3 px-2"
+          >
+            <li>
+              <a href="{% url 'car_list_japan' %}" class="nav-link px-2"
+                >Авто из Японии</a
+              >
+            </li>
+            <li>
+              <a href="{% url 'car_list_china' %}" class="nav-link px-2"
+                >Авто из Китая</a
+              >
+            </li>
+            <li>
+              <a href="{% url 'car_list_korea' %}" class="nav-link px-2"
+                >Авто из Кореи</a
+              >
+            </li>
+            <li data-bs-toggle="modal" data-bs-target="#mainFeedBackModal">
+              <a href="#" class="nav-link px-2">Спецтехника из Китая</a>
+            </li>
+            <li>
+              <a href="#auto-selection" class="nav-link px-2">Автоподбор</a>
+            </li>
+            <li class="d-xl-inline-block d-none">
+              <a href="{% url 'about_us' %}" class="nav-link px-2">О нас</a>
+            </li>
+          </ul>
+
+          <div
+            class="col-12 d-xl-none order-2 'mt-4'"
+            style="padding-left: 10px; padding-right: 10px"
+          >
+            <hr color="#0000" size="1px" />
+          </div>
+
+          <div
+            class="col order-xl-2 order-1 justify-content-xl-end justify-content-center"
+          >
+            <ul
+              class="nav header-nav-contact col-12 col-md-auto mb-2 justify-content-end align-items-center mb-md-0"
+              style="padding-right: calc(1.5rem * 0.5) !important"
+            >
+              <div
+                class="btn-social-header d-flex justify-content-center mb-xl-0 mb-4"
+              >
+                <li>
+                  <a
+                    class="btn-social-header__whatsaap"
+                    target="_blank"
+                    href="https://wa.me/79294201720?text=Здравствуйте!%20Посчитайте%20пожалуйста%20автомобиль"
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g clip-path="url(#clip0_399_1211)">
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M1.46543e-06 23.5382C0.00227839 23.6936 0.103437 23.8636 0.238112 23.9383C0.299788 23.9725 0.403037 24.0002 0.467554 24C0.532071 23.9998 1.72505 23.5913 3.11862 23.0924L5.65238 22.1852L5.88698 22.3241C6.84403 22.8908 8.38141 23.501 9.40609 23.7209C13.4504 24.5886 17.5792 23.3897 20.4808 20.505C22.3415 18.6551 23.527 16.256 23.935 13.5144C24.031 12.8696 24.0181 11.0234 23.9129 10.3465C23.6111 8.40448 22.9831 6.77328 21.9525 5.2544C20.0075 2.38783 17.0223 0.551221 13.5117 0.0613207C12.9258 -0.0204402 11.0946 -0.0204402 10.5087 0.0613207C7.78259 0.441754 5.40619 1.60986 3.51974 3.49674C1.63133 5.38558 0.481545 7.73221 0.0830534 10.5108C-0.00941999 11.1556 0.00684491 12.9589 0.111414 13.6552C0.219132 14.3725 0.499498 15.4915 0.722868 16.0957C0.898261 16.5701 1.4607 17.751 1.74287 18.2374L1.89627 18.5018L0.947306 20.9632C0.425375 22.3169 -0.000912033 23.4757 1.46543e-06 23.5382ZM16.0363 17.8873C16.5034 17.7262 16.8521 17.5112 17.1928 17.1744C17.5451 16.8262 17.7819 16.4434 17.9442 15.9598C18.0594 15.6166 18.0673 15.5419 18.0533 14.9208C18.0399 14.3301 18.0272 14.2394 17.9443 14.1475C17.8927 14.0903 17.3437 13.7893 16.7244 13.4787C15.6685 12.9491 15.5778 12.9125 15.2698 12.8924C14.7409 12.8579 14.1758 13.1042 13.6082 13.6165L13.3393 13.8593L12.9437 13.6635C11.7751 13.085 10.9306 12.2508 10.3582 11.1091L10.138 10.67L10.4484 10.2855C10.6191 10.074 10.8331 9.74256 10.924 9.54891C11.0718 9.23413 11.0895 9.15458 11.0909 8.79791L11.0925 8.39899L10.5209 7.26626C10.1593 6.54978 9.90287 6.09707 9.82309 6.0343C9.70815 5.94386 9.63792 5.93506 9.03144 5.93506C8.55973 5.93506 8.29171 5.95688 8.11107 6.00998C7.11642 6.30238 6.30994 7.14673 6.04843 8.16947C5.81057 9.09969 6.00809 10.0331 6.75246 11.4965C7.71173 13.3824 8.86394 14.8264 10.2023 15.82C11.6186 16.8716 13.2738 17.7299 14.3548 17.9735C14.8187 18.078 15.5994 18.038 16.0363 17.8873Z"
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_399_1211">
+                          <rect width="24" height="24" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="btn-social-header__telegram"
+                    target="_blank"
+                    href="https://t.me/+79294201720"
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g clip-path="url(#clip0_399_1216)">
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12ZM12.4331 8.85905C11.2659 9.34452 8.93319 10.3493 5.43494 11.8735C4.86688 12.0993 4.56931 12.3203 4.54222 12.5364C4.49644 12.9016 4.95377 13.0454 5.57653 13.2413C5.66124 13.2679 5.74901 13.2955 5.83899 13.3247C6.45169 13.5239 7.27588 13.7569 7.70434 13.7662C8.09299 13.7746 8.52678 13.6143 9.00569 13.2855C12.2742 11.0791 13.9614 9.96394 14.0674 9.93989C14.1421 9.92293 14.2457 9.90161 14.3158 9.96397C14.386 10.0263 14.3791 10.1444 14.3717 10.1761C14.3263 10.3693 12.5312 12.0382 11.6022 12.9019C11.3126 13.1712 11.1071 13.3621 11.0651 13.4058C10.9711 13.5035 10.8752 13.5959 10.783 13.6847C10.2138 14.2335 9.78696 14.645 10.8067 15.3169C11.2967 15.6398 11.6888 15.9069 12.08 16.1733C12.5072 16.4642 12.9333 16.7544 13.4847 17.1158C13.6251 17.2079 13.7593 17.3035 13.8899 17.3967C14.3871 17.7511 14.8338 18.0695 15.3856 18.0188C15.7063 17.9893 16.0375 17.6877 16.2057 16.7885C16.6033 14.6633 17.3847 10.0586 17.5653 8.1611C17.5811 7.99485 17.5612 7.78209 17.5452 7.6887C17.5292 7.5953 17.4958 7.46223 17.3744 7.36372C17.2306 7.24706 17.0087 7.22246 16.9094 7.22421C16.4581 7.23216 15.7656 7.47294 12.4331 8.85905Z"
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_399_1216">
+                          <rect width="24" height="24" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="btn-social-header__instagram"
+                    target="_blank"
+                    href="https://www.instagram.com/autocenter.25?igsh=MXd3czdvaHUwd2ZpZg%3D%3D&utm_source=qr"
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g clip-path="url(#clip0_5437_16553)">
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M11.977 0H12.0316C18.642 0 24.0007 5.36035 24.0007 11.9727V12.0273C24.0007 18.6397 18.642 24 12.0316 24H11.977C5.36658 24 0.0078125 18.6397 0.0078125 12.0273V11.9727C0.0078125 5.36035 5.36658 0 11.977 0ZM8.28992 4.88272H15.714C17.765 4.88272 19.4336 6.55178 19.4336 8.60342V15.3974C19.4336 17.449 17.765 19.1181 15.714 19.1181H8.28992C6.23888 19.1181 4.57031 17.449 4.57031 15.3974V8.60342C4.57031 6.55178 6.23888 4.88272 8.28992 4.88272ZM8.28992 6.19527C6.96263 6.19527 5.88247 7.27574 5.88247 8.60342V15.3974C5.88247 16.7251 6.96263 17.8055 8.28992 17.8055H15.714C17.0413 17.8055 18.1215 16.7251 18.1215 15.3974V8.60342C18.1215 7.27574 17.0413 6.19527 15.714 6.19527H8.28992ZM15.4627 11.9995C15.4627 13.9082 13.9101 15.4604 12.0028 15.4604C10.0947 15.4604 8.54297 13.9082 8.54297 11.9995C8.54297 10.0908 10.0947 8.53867 12.0028 8.53867C13.911 8.53867 15.4627 10.0908 15.4627 11.9995ZM14.1505 12.0004C14.1505 10.8156 13.1872 9.85205 12.0028 9.85205C10.8184 9.85205 9.85513 10.8156 9.85513 12.0004C9.85513 13.1851 10.8184 14.1487 12.0028 14.1487C13.1872 14.1487 14.1505 13.1851 14.1505 12.0004ZM15.7838 9.09783C16.2974 9.09783 16.716 8.67993 16.716 8.16534C16.716 7.65075 16.2982 7.23285 15.7838 7.23285C15.2693 7.23285 14.8516 7.65075 14.8516 8.16534C14.8516 8.67993 15.2693 9.09783 15.7838 9.09783Z"
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_5437_16553">
+                          <rect
+                            width="23.9929"
+                            height="24"
+                            fill="white"
+                            transform="translate(0.0078125)"
+                          />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </a>
+                </li>
+              </div>
+              <li class="social">
+                <a href="tel:88005501720" class="nav-link p-0">
+                  8 800 550 17 20<br />
+                </a>
+                <span>Звонок по РФ бесплатный</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <body>
+    {% block content %} {% endblock %}
+  </body>
+ 
+  <script type="text/javascript" src="{%static 'vendor/bootstrap.js' %}"></script>
+  <script type="text/javascript" src="{%static 'vendor/slick.js' %}"></script>
+  <script type="text/javascript" src="{%static 'js/base.js' %}"></script>
+  <script type="text/javascript" src="{%static 'js/slick.js' %}"></script>
+
+  <footer style="background-color: #000000">
+    <div class="footer-wp">
+      <div class="footer-wp-top row align-items-center">
+        <div class="mb-md-0 col-md-6 mb-4 col-12">
+          <div class="row align-items-center">
+            <div class="col-xl-3 col-lg-4 col-md-4 col-6 d-md-block d-none">
+              <a href="/">
+                <img
+                  style="max-width: 110px; max-height: 80px"
+                  src="{% static 'img/about-logo.png' %}"
+                  alt="logo"
+                />
+              </a>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-4 col-6">
+              <p>
+                <a href="/about_us">Контакты</a>
+              </p>
+              <p>
+                <a href="/cars_japan">Авто из Японии</a>
+              </p>
+              <p>
+                <a href="/cars_china">Авто из Китая</a>
+              </p>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-4 col-6">
+              <p>
+                <a href="#auto-selection">Автоподбор</a>
+              </p>
+              <p>
+                <a href="#scheme">Схема работы</a>
+              </p>
+              <p>
+                <a href="#articles">Блог</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-12">
+          <div class="row row-col-12 align-items-start">
+            <div class="mb-md-0 col-md mb-4 col-12">
+              <h2>Авто из Японии</h2>
+              <span>
+                <a
+                  target="_blank"
+                  href="/cars_japan/?brand=TOYOTA&model=&mileage_min=&mileage_max=&engine_volume_min=&engine_volume_max=&drive=&year_min=&year_max=&transmission=&color="
+                  >Toyota</a
+                >
+              </span>
+              <span>
+                <a
+                  target="_blank"
+                  href="/cars_japan/?brand=NISSAN&model=&mileage_min=&mileage_max=&engine_volume_min=&engine_volume_max=&drive=&year_min=&year_max=&transmission=&color="
+                  >Nissan</a
+                >
+              </span>
+              <span>
+                <a
+                  target="_blank"
+                  href="/cars_japan/?brand=HONDA&model=&mileage_min=&mileage_max=&engine_volume_min=&engine_volume_max=&drive=&year_min=&year_max=&transmission=&color="
+                  >Honda</a
+                >
+              </span>
+              <span>
+                <a
+                  target="_blank"
+                  href="/cars_japan/?brand=MAZDA&model=&mileage_min=&mileage_max=&engine_volume_min=&engine_volume_max=&drive=&year_min=&year_max=&transmission=&color="
+                  >Mazda</a
+                >
+              </span>
+              <span>
+                <a
+                  target="_blank"
+                  href="/cars_japan/?brand=MITSUBISHI&model=&mileage_min=&mileage_max=&engine_volume_min=&engine_volume_max=&drive=&year_min=&year_max=&transmission=&color="
+                  >Mitsubishi</a
+                >
+              </span>
+              <span>
+                <a
+                  target="_blank"
+                  href="/cars_japan/?brand=SUBARU&model=&mileage_min=&mileage_max=&engine_volume_min=&engine_volume_max=&drive=&year_min=&year_max=&transmission=&color="
+                  >Subaru</a
+                >
+              </span>
+              <span>
+                <a
+                  target="_blank"
+                  href="/cars_japan/?brand=SUZUKI&model=&mileage_min=&mileage_max=&engine_volume_min=&engine_volume_max=&drive=&year_min=&year_max=&transmission=&color="
+                  >Suzuki</a
+                >
+              </span>
+              <span>
+                <a
+                  target="_blank"
+                  href="/cars_japan/?brand=LEXUS&model=&mileage_min=&mileage_max=&engine_volume_min=&engine_volume_max=&drive=&year_min=&year_max=&transmission=&color="
+                  >Lexus</a
+                >
+              </span>
+              <span>
+                <a
+                  target="_blank"
+                  href="/cars_japan/?brand=BMW&model=&mileage_min=&mileage_max=&engine_volume_min=&engine_volume_max=&drive=&year_min=&year_max=&transmission=&color="
+                  >BMW</a
+                >
+              </span>
+              <span>
+                <a
+                  target="_blank"
+                  href="/cars_japan/?brand=DAIHATSU&model=&mileage_min=&mileage_max=&engine_volume_min=&engine_volume_max=&drive=&year_min=&year_max=&transmission=&color="
+                  >Daihatsu</a
+                >
+              </span>
+            </div>
+            <div class="mb-md-0 col-md mb-4 col-12">
+              <h2>Авто из Китая</h2>
+              <span>
+                <a
+                  target="_blank"
+                  href="https://autocenter25.com/cars_china/?brand=CHANGAN&model=&mileage_min=&mileage_max=&engine_volume_min=&engine_volume_max=&drive=&year_min=&year_max=&transmission=&color=#"
+                  >Changan</a
+                >
+              </span>
+              <span>
+                <a
+                  target="_blank"
+                  href="https://autocenter25.com/cars_china/?brand=EXEED&model=&mileage_min=&mileage_max=&engine_volume_min=&engine_volume_max=&drive=&year_min=&year_max=&transmission=&color=#"
+                  >Exeed</a
+                >
+              </span>
+              <span>
+                <a
+                  target="_blank"
+                  href="https://autocenter25.com/cars_china/?brand=GEELY+AUTO&model=&mileage_min=&mileage_max=&engine_volume_min=&engine_volume_max=&drive=&year_min=&year_max=&transmission=&color=#"
+                  >Geely</a
+                >
+              </span>
+              <span>
+                <a
+                  target="_blank"
+                  href="https://autocenter25.com/cars_china/?brand=CHERY&model=&mileage_min=&mileage_max=&engine_volume_min=&engine_volume_max=&drive=&year_min=&year_max=&transmission=&color=#"
+                  >Chery</a
+                >
+              </span>
+              <span>
+                <a
+                  target="_blank"
+                  href="https://autocenter25.com/cars_china/?brand=HAVAL&model=&mileage_min=&mileage_max=&engine_volume_min=&engine_volume_max=&drive=&year_min=&year_max=&transmission=&color=#"
+                  >Haval</a
+                >
+              </span>
+              <span>
+                <a
+                  target="_blank"
+                  href="https://autocenter25.com/cars_china/?brand=FERRARI&model=&mileage_min=&mileage_max=&engine_volume_min=&engine_volume_max=&drive=&year_min=&year_max=&transmission=&color=#"
+                  >Ferrari</a
+                >
+              </span>
+              <span>
+                <a
+                  target="_blank"
+                  href="https://autocenter25.com/cars_china/?brand=BYD&model=&mileage_min=&mileage_max=&engine_volume_min=&engine_volume_max=&drive=&year_min=&year_max=&transmission=&color=#"
+                  >BYD</a
+                >
+              </span>
+              <span>
+                <a
+                  target="_blank"
+                  href="https://autocenter25.com/cars_china/?brand=JAC&model=&mileage_min=&mileage_max=&engine_volume_min=&engine_volume_max=&drive=&year_min=&year_max=&transmission=&color=#"
+                  >JAC</a
+                >
+              </span>
+              <span>
+                <a
+                  target="_blank"
+                  href="https://autocenter25.com/cars_china/?brand=LI+AUTO&model=&mileage_min=&mileage_max=&engine_volume_min=&engine_volume_max=&drive=&year_min=&year_max=&transmission=&color=#"
+                  >Li</a
+                >
+              </span>
+              <span>
+                <a
+                  target="_blank"
+                  href="https://autocenter25.com/cars_china/?brand=DONGFENG&model=&mileage_min=&mileage_max=&engine_volume_min=&engine_volume_max=&drive=&year_min=&year_max=&transmission=&color=#"
+                  >DongFeng</a
+                >
+              </span>
+            </div>
+            <div class="col-md col-12">
+              <h2>Авто из Кореи</h2>
+              <span>
+                <a href="#">Hyundai</a>
+              </span>
+              <span>
+                <a href="#">Kia</a>
+              </span>
+              <span>
+                <a href="#">SsangYong</a>
+              </span>
+              <span>
+                <a href="#">Daewoo</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr color="#fff" size="1px" width="100%" />
+
+      <div class="footer-wp-bottom row">
+        <div class="col-12 order-2">
+          <div class="row text-center" style="padding-top: 20px;">
+            <div class="col">
+              <span>© 2003–2024 ООО "Автоцентр-25"</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 order-1">
+          <div class="row text-center cc_block">
+            <div class="col-md-12 col-12 order-md-1 order-2 mb-md-0 mb-4">
+              <a
+                target="_blank"
+                href="tel:88005501720"
+                class="footer-wp-bottom__link-social"
+              >
+                <h2 class="footer-tel text-center" style="padding-bottom: 10px">
+                  8 800 550 17 20
+                </h2>
+              </a>
+              <a
+                target="_blank"
+                class="footer-wp-bottom__link-social"
+                href="https://wa.me/79294201720?text=Здравствуйте!%20Посчитайте%20пожалуйста%20автомобиль"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_399_1397)">
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M1.46543e-06 23.5382C0.00227839 23.6936 0.103437 23.8636 0.238112 23.9383C0.299788 23.9725 0.403037 24.0002 0.467554 24C0.532071 23.9998 1.72505 23.5913 3.11862 23.0924L5.65238 22.1852L5.88698 22.3241C6.84403 22.8908 8.38141 23.501 9.40609 23.7209C13.4504 24.5886 17.5792 23.3897 20.4808 20.505C22.3415 18.6551 23.527 16.256 23.935 13.5144C24.031 12.8696 24.0181 11.0234 23.9129 10.3465C23.6111 8.40448 22.9831 6.77328 21.9525 5.2544C20.0075 2.38783 17.0223 0.551221 13.5117 0.0613207C12.9258 -0.0204402 11.0946 -0.0204402 10.5087 0.0613207C7.78259 0.441754 5.40619 1.60986 3.51974 3.49674C1.63133 5.38558 0.481545 7.73221 0.0830534 10.5108C-0.00941999 11.1556 0.00684491 12.9589 0.111414 13.6552C0.219132 14.3725 0.499498 15.4915 0.722868 16.0957C0.898261 16.5701 1.4607 17.751 1.74287 18.2374L1.89627 18.5018L0.947306 20.9632C0.425375 22.3169 -0.000912033 23.4757 1.46543e-06 23.5382ZM16.0363 17.8873C16.5034 17.7262 16.8521 17.5112 17.1928 17.1744C17.5451 16.8262 17.7819 16.4434 17.9442 15.9598C18.0594 15.6166 18.0673 15.5419 18.0533 14.9208C18.0399 14.3301 18.0272 14.2394 17.9443 14.1475C17.8927 14.0903 17.3437 13.7893 16.7244 13.4787C15.6685 12.9491 15.5778 12.9125 15.2698 12.8924C14.7409 12.8579 14.1758 13.1042 13.6082 13.6165L13.3393 13.8593L12.9437 13.6635C11.7751 13.085 10.9306 12.2508 10.3582 11.1091L10.138 10.67L10.4484 10.2855C10.6191 10.074 10.8331 9.74256 10.924 9.54891C11.0718 9.23413 11.0895 9.15458 11.0909 8.79791L11.0925 8.39899L10.5209 7.26626C10.1593 6.54978 9.90287 6.09707 9.82309 6.0343C9.70815 5.94386 9.63792 5.93506 9.03144 5.93506C8.55973 5.93506 8.29171 5.95688 8.11107 6.00998C7.11642 6.30238 6.30994 7.14673 6.04843 8.16947C5.81057 9.09969 6.00809 10.0331 6.75246 11.4965C7.71173 13.3824 8.86394 14.8264 10.2023 15.82C11.6186 16.8716 13.2738 17.7299 14.3548 17.9735C14.8187 18.078 15.5994 18.038 16.0363 17.8873Z"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_399_1397">
+                      <rect width="24" height="24" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </a>
+
+              <a
+                target="_blank"
+                class="footer-wp-bottom__link-social"
+                href="https://t.me/+79294201720"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12ZM12.4331 8.85905C11.2659 9.34452 8.93319 10.3493 5.43494 11.8735C4.86688 12.0993 4.56931 12.3203 4.54222 12.5364C4.49644 12.9016 4.95377 13.0454 5.57653 13.2413C5.66124 13.2679 5.74901 13.2955 5.83899 13.3247C6.45169 13.5239 7.27588 13.7569 7.70434 13.7662C8.09299 13.7746 8.52678 13.6143 9.00569 13.2855C12.2742 11.0791 13.9614 9.96394 14.0674 9.93989C14.1421 9.92293 14.2457 9.90161 14.3158 9.96397C14.386 10.0263 14.3791 10.1444 14.3717 10.1761C14.3263 10.3693 12.5312 12.0382 11.6022 12.9019C11.3126 13.1712 11.1071 13.3621 11.0651 13.4058C10.9711 13.5035 10.8752 13.5959 10.783 13.6847C10.2138 14.2335 9.78696 14.645 10.8067 15.3169C11.2967 15.6398 11.6888 15.9069 12.08 16.1733C12.5072 16.4642 12.9333 16.7544 13.4847 17.1158C13.6251 17.2079 13.7593 17.3035 13.8899 17.3967C14.3871 17.7511 14.8338 18.0695 15.3856 18.0188C15.7063 17.9893 16.0375 17.6877 16.2057 16.7885C16.6033 14.6633 17.3847 10.0586 17.5653 8.1611C17.5811 7.99485 17.5612 7.78209 17.5452 7.6887C17.5292 7.5953 17.4958 7.46223 17.3744 7.36372C17.2306 7.24706 17.0087 7.22246 16.9094 7.22421C16.4581 7.23216 15.7656 7.47294 12.4331 8.85905Z"
+                  />
+                </svg>
+              </a>
+
+              <a
+                target="_blank"
+                class="footer-wp-bottom__link-social"
+                href="https://www.instagram.com/autocenter.25?igsh=MXd3czdvaHUwd2ZpZg%3D%3D&utm_source=qr"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_5437_16553)">
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M11.977 0H12.0316C18.642 0 24.0007 5.36035 24.0007 11.9727V12.0273C24.0007 18.6397 18.642 24 12.0316 24H11.977C5.36658 24 0.0078125 18.6397 0.0078125 12.0273V11.9727C0.0078125 5.36035 5.36658 0 11.977 0ZM8.28992 4.88272H15.714C17.765 4.88272 19.4336 6.55178 19.4336 8.60342V15.3974C19.4336 17.449 17.765 19.1181 15.714 19.1181H8.28992C6.23888 19.1181 4.57031 17.449 4.57031 15.3974V8.60342C4.57031 6.55178 6.23888 4.88272 8.28992 4.88272ZM8.28992 6.19527C6.96263 6.19527 5.88247 7.27574 5.88247 8.60342V15.3974C5.88247 16.7251 6.96263 17.8055 8.28992 17.8055H15.714C17.0413 17.8055 18.1215 16.7251 18.1215 15.3974V8.60342C18.1215 7.27574 17.0413 6.19527 15.714 6.19527H8.28992ZM15.4627 11.9995C15.4627 13.9082 13.9101 15.4604 12.0028 15.4604C10.0947 15.4604 8.54297 13.9082 8.54297 11.9995C8.54297 10.0908 10.0947 8.53867 12.0028 8.53867C13.911 8.53867 15.4627 10.0908 15.4627 11.9995ZM14.1505 12.0004C14.1505 10.8156 13.1872 9.85205 12.0028 9.85205C10.8184 9.85205 9.85513 10.8156 9.85513 12.0004C9.85513 13.1851 10.8184 14.1487 12.0028 14.1487C13.1872 14.1487 14.1505 13.1851 14.1505 12.0004ZM15.7838 9.09783C16.2974 9.09783 16.716 8.67993 16.716 8.16534C16.716 7.65075 16.2982 7.23285 15.7838 7.23285C15.2693 7.23285 14.8516 7.65075 14.8516 8.16534C14.8516 8.67993 15.2693 9.09783 15.7838 9.09783Z"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_5437_16553">
+                      <rect
+                        width="23.9929"
+                        height="24"
+                        fill="white"
+                        transform="translate(0.0078125)"
+                      />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div
+    class="modal fade"
+    id="mainFeedBackModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div
+      class="modal-dialog modal-dialog-centered"
+      role="document"
+      style="max-width: 630px"
+    >
+      <div class="modal-content feedback">
+        <div class="modal-header border-0 p-0">
+          <button
+            id="close-btn"
+            type="button"
+            class="close close-btn float-end"
+            data-bs-dismiss="modal"
+            aria-label="Закрыть"
+          >
+            <img
+              aria-label="Закрыть"
+              src="{%static 'img/close.svg' %}"
+              alt="btn"
+            />
+          </button>
+        </div>
+        <div class="modal-body test p-0" aria-hidden="true">
+          <div class="form-wp">
+            <div class="">
+              <h5>Оставить заявку</h5>
+              <form
+                id="feedback-form-modal"
+                class="feedback-form-form"
+                method="post"
+              >
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-6">
+                    <label>Имя</label>
+                    {{feedbackForm.name}}
+                  </div>
+                  <div class="col-6">
+                    <label>Телефон</label>
+                    {{feedbackForm.number}}
+                  </div>
+                  <div class="col-12">
+                    <label>Уточните свой вопрос</label>
+                    {{feedbackForm.message}}
+                  </div>
+
+                  <div class="col-12">
+                    <button
+                      type="submit"
+                      onclick="ym(97653553,'reachGoal','YM-form'); return true;"
+                    >
+                      Отправить
+                    </button>
+                  </div>
+                </div>
+              </form>
+              <div class="feedback-form-annotation"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <img src="{% static 'img/logo.png' %}" alt="logo" style="width: 32px" />
+      </div>
+      <div class="toast-body">
+        Вы оставили свой запрос, скоро мы свяжемся с вами
+      </div>
+    </div>
+  </div>
+  
+  <script type="text/javascript" src="https://unpkg.com//imask@7.1.3/dist/imask.js"></script>
+
+  <script>
+    fedback = $(".feedback-form-form");
+    fedback.on("submit", function (event) {
+      event.preventDefault();
+      var form = $(this).serialize();
+      $.ajax({
+        data: form,
+        type: $(this).attr("method"),
+        datatype: "json",
+        url: "/feedback/",
+        success: function (response) {},
+      });
+      $(this).find("input")[1].value = "";
+      $(this).find("input")[2].value = "";
+      $(this).find("textarea")[0].value = "";
+      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
+        document.getElementById("liveToast")
+      );
+      toastBootstrap.show();
+    });
+
+    $("#close-btn").on("click", function (event) {
+      const inputFields = fedback.find("input");
+      const textareaFields = fedback.find("textarea");
+
+      for (const inputField of inputFields) {
+        inputField.value = "";
+      }
+      for (const textareaField of textareaFields) {
+        textareaField.value = "";
+      }
+
+      console.log("Input field clicked!"); //Для проверки
+    });
+  </script>
+
+  <script>
+    const setModalInput = (text) => {
+      document.querySelector(".modal textarea").value = text;
+    };
+  </script>
+</html>

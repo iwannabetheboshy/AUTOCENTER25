@@ -1,0 +1,190 @@
+{% extends 'base/base.html' %} {% load static %} {% block content %}
+<section class="about-us">
+  <h2
+    style="
+      margin-top: 134px !important;
+      margin-bottom: 56px !important;
+      text-align: center !important;
+    "
+  >
+    Контакты
+  </h2>
+
+  <div class="row about-us__contact">
+    <div class="about-us__general col-md-6 col-12">
+      <h4>Телефон</h4>
+      <p>
+        <a href="tel:+79294201720"> +7 929-420-17-20 </a>
+      </p>
+
+      <h4>Электроная почта</h4>
+      <p>
+        <a href="mailto:autocenter25.corp@gmail.com"
+          >autocenter25.corp@gmail.com</a
+        >
+      </p>
+
+      <h4>График работы</h4>
+      <span>ПН-ПТ</span>
+      <p>10:00 - 19:00</p>
+      <span>СБ-ВС</span>
+      <p>Выходной</p>
+
+      <h4>Адрес офиса</h4>
+      <p>
+        Приморский край, г. Владивосток <br />
+        ул. Океанский проспект д. 70в, оф. 18
+      </p>
+
+      <h4>Проложить маршрут</h4>
+      <div class="row">
+        <p class="col-2">
+          <a href="https://go.2gis.com/v69yh" target="_blank">2GIS</a>
+        </p>
+        <p class="col-2">
+          <a href="https://yandex.ru/maps/-/CDfkyNNP" target="_blank"
+            >Яндекс.Карты</a
+          >
+        </p>
+      </div>
+    </div>
+    <div class="about-us__bank col-md-6 col-12">
+      <h4>Расчётный счёт</h4>
+      <p>40702810450000041514</p>
+
+      <h4>Название банка</h4>
+      <p>ПАО Сбербанк</p>
+
+      <h4>БИК</h4>
+      <p>040813608</p>
+
+      <h4>Корреспондентский счёт</h4>
+      <p>30101810600000000608</p>
+
+      <h4>Наименование</h4>
+      <p>
+        Генеральный директор
+        <br />
+        Казаченко Андрей Евгеньевич
+      </p>
+
+      <h4>ИНН/КПП</h4>
+      <p>2543112695/254001001</p>
+
+      <h4>ОГРН</h4>
+      <p>1172536018973</p>
+    </div>
+  </div>
+</section>
+
+{% include 'feedback.html' %} 
+
+<style>
+  .about-us h4 {
+    font-weight: 500;
+    font-size: 18px;
+    color: #9f9f9f;
+  }
+
+  .about-us a {
+    text-decoration: none;
+    color: #000000;
+  }
+
+  .about-us p {
+    font-weight: 700;
+    font-size: 20px;
+    color: #000000;
+  }
+
+  .about-us span {
+  }
+
+  .about-us__general p {
+    margin-bottom: 30px;
+  }
+
+  .about-us__bank p {
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 1700px) {
+    .about-us__contact {
+      padding-left: 30px !important;
+    }
+  }
+
+  .contacts-info-text {
+    margin-bottom: 24px !important;
+  }
+
+  .contacts a {
+    text-decoration: none;
+  }
+
+  .form-feedback a {
+    text-decoration: none;
+  }
+
+  .contacts-info-text {
+    margin-bottom: 55px !important;
+  }
+
+  .contacts .contact-body img {
+    margin-left: 0px;
+  }
+
+  .mini-catalog .goal-btn {
+    margin-top: 20px !important;
+  }
+
+  .check-auto-selection img {
+    max-width: 100%;
+    object-fit: cover;
+    margin-right: 12px;
+  }
+
+  .support-btn a {
+    text-decoration: none;
+    color: #ffffff;
+  }
+  .about {
+    margin-bottom: 60px;
+  }
+
+  @media (max-width: 992px) {
+    .form-feedback {
+      padding: 3.5714% 0px 0px 0px !important;
+      margin-bottom: 0px !important;
+    }
+
+    .form-feedback .contacts {
+      padding: 0px 0px 0px 0px !important;
+    }
+
+    .form-wp {
+      padding: 24px 28px !important;
+    }
+
+    .form-contact-click {
+      padding: 24px 28px !important;
+    }
+
+    .contacts-info-text {
+      margin-bottom: 24px !important;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .form-wp h5 {
+      font-size: 18px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .inner-links {
+      margin-bottom: 20px !important;
+    }
+  }
+</style>
+{% endblock %}

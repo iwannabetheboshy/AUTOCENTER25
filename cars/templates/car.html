@@ -1,0 +1,1309 @@
+{% extends 'base/base.html' %} 
+{% load static %} 
+{% load intspace %} 
+{% block content %}
+
+<section class="car-card">
+  <h1>{{ car.brand }} {{ car.model }}, {{ car.year }} г.</h1>
+  <div class="row g-0">
+    <div class="col-md-6 col-sm-12">
+      <div id="container">
+        <div class="gallery">
+          <div class="main-slides">
+            {% for photo in car.img %}
+			
+            <img
+              src="{{photo}}"
+              alt="{{ car.brand }} {{ car.model }}"
+              class="gallery-slide slide-{{ forloop.counter0 }} gallery__Image" 
+			  data-large="{{photo}}"
+			  style="cursor: pointer;"
+            />
+			
+            {% endfor %}
+
+            <p class="slides-counter">
+              <span class="curr-slide-count">0</span> /
+              <span class="all-slides-count">8</span>
+            </p>
+			
+            <div class="previous-slide-button slider-controller-button">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </div>
+            <div class="next-slide-button slider-controller-button">
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </div>
+          </div>
+          <div class="thumbnail-slides"></div>
+        </div>
+      </div>
+    </div>
+
+<style>
+
+.asyncGallery {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  z-index: 11111;
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.84);
+  transition: opacity 200ms, visibility 200ms;
+}
+
+.asyncGallery.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.asyncGallery__Item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+  transition: opacity 200ms, visibility 200ms;
+}
+
+.asyncGallery__Item.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.asyncGallery__ItemImage img {
+  max-height: 80vh;
+  display: block;
+}
+
+.asyncGallery__ItemDescription,
+.asyncGallery__Loader {
+  color: #fff;
+}
+
+.asyncGallery__Loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  color: #fff;
+  z-index: 100;
+}
+
+.asyncGallery__Loader.is-visible {
+  display: block;
+}
+
+.asyncGallery button {
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  padding: 0;
+  font-size: 0;
+  cursor: pointer;
+}
+
+.asyncGallery__Close {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 30px;
+  height: 30px;
+  z-index: 1000;
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
+  background-image: url("data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNTEycHgiIHZlcnNpb249IjEuMSIgaGVpZ2h0PSI1MTJweCIgdmlld0JveD0iMCAwIDY0IDY0IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2NCA2NCI+CiAgPGc+CiAgICA8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMjguOTQxLDMxLjc4NkwwLjYxMyw2MC4xMTRjLTAuNzg3LDAuNzg3LTAuNzg3LDIuMDYyLDAsMi44NDljMC4zOTMsMC4zOTQsMC45MDksMC41OSwxLjQyNCwwLjU5ICAgYzAuNTE2LDAsMS4wMzEtMC4xOTYsMS40MjQtMC41OWwyOC41NDEtMjguNTQxbDI4LjU0MSwyOC41NDFjMC4zOTQsMC4zOTQsMC45MDksMC41OSwxLjQyNCwwLjU5YzAuNTE1LDAsMS4wMzEtMC4xOTYsMS40MjQtMC41OSAgIGMwLjc4Ny0wLjc4NywwLjc4Ny0yLjA2MiwwLTIuODQ5TDM1LjA2NCwzMS43ODZMNjMuNDEsMy40MzhjMC43ODctMC43ODcsMC43ODctMi4wNjIsMC0yLjg0OWMtMC43ODctMC43ODYtMi4wNjItMC43ODYtMi44NDgsMCAgIEwzMi4wMDMsMjkuMTVMMy40NDEsMC41OWMtMC43ODctMC43ODYtMi4wNjEtMC43ODYtMi44NDgsMGMtMC43ODcsMC43ODctMC43ODcsMi4wNjIsMCwyLjg0OUwyOC45NDEsMzEuNzg2eiIvPgogIDwvZz4KPC9zdmc+Cg==");
+}
+
+.asyncGallery__Counter {
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  right: 40px;
+  bottom: 40px;
+}
+
+.asyncGallery__Dots {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  transform: translateX(-50%);
+  list-style-type: none;
+  z-index: 1000;
+}
+
+.asyncGallery__Dots button {
+  padding: 0;
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  border: 0;
+  outline: 0;
+  border-radius: 50%;
+}
+
+.asyncGallery__Dots li {
+  opacity: 0.2;
+  transition: opacity 200ms;
+}
+
+.asyncGallery__Dots li + li {
+  margin-left: 10px;
+}
+
+.asyncGallery__Dots li.is-active {
+  opacity: 1;
+}
+
+.asyncGallery__Next,
+.asyncGallery__Prev {
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 30px;
+  z-index: 1000;
+  transition: transform 200ms, opacity 200ms;
+  transform: translateY(-50%);
+}
+
+.asyncGallery__Next:disabled,
+.asyncGallery__Prev:disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+
+.asyncGallery__Next:before,
+.asyncGallery__Prev:before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 50%;
+  background-image: url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 129 129' xmlns:xlink='http://www.w3.org/1999/xlink' enable-background='new 0 0 129 129'%3E%3Cg%3E%3Cpath d='m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E%0A");
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
+}
+
+.asyncGallery__Next {
+  right: 40px;
+}
+
+.asyncGallery__Next:hover {
+  transform: translateX(2px) translateY(-50%);
+}
+
+.asyncGallery__Next:before {
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.asyncGallery__Prev {
+  left: 40px;
+}
+
+.asyncGallery__Prev:hover {
+  transform: translateX(-2px) translateY(-50%);
+}
+
+.asyncGallery__Prev:before {
+  transform: translate3d(-50%, -50%, 0) scale(-1);
+}
+
+/* DEMO */
+
+@media screen and (max-width: 768px) {
+  .asyncGallery__Close {
+    top: 15px;
+    right: 15px;
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
+  }
+
+  .asyncGallery__Dots {
+    bottom: 15px;
+  }
+
+  .asyncGallery__Counter {
+    right: 15px;
+    bottom: 15px;
+    font-size: 12px;
+  }
+
+  .asyncGallery__Item {
+    width: 100%;
+  }
+
+  .asyncGallery__ItemImage img {
+    max-height: none;
+    max-width: 100%;
+  }
+
+  .asyncGallery__ItemDescription {
+    padding: 0 20px;
+  }
+
+  .asyncGallery__Next,
+  .asyncGallery__Prev {
+    display: none;
+  }
+}
+
+</style>
+
+<script>
+class AsyncGallery {
+  constructor(settings) {
+    this.settings = {
+      images: ".gallery__Image",
+      loop: true,
+      next: undefined,
+      prev: undefined,
+      dots: undefined,
+      close: undefined,
+      loader: undefined,
+      counter: undefined,
+      counterDivider: "/",
+      keyboardNavigation: true,
+      hiddenElements: []
+    };
+
+    Object.assign(this.settings, settings);
+
+    this.gallery = null;
+    this.index = 0;
+    this.items = [...document.querySelectorAll(this.settings.images)];
+
+    this.addedItems = {};
+
+    this.touch = {
+      endX: 0,
+      startX: 0
+    };
+
+    this.init();
+  }
+
+  get loading() {
+    return !this.settings.hiddenElements.includes("loader");
+  }
+
+  get dotsVisible() {
+    return !this.settings.hiddenElements.includes("dots");
+  }
+
+  init() {
+    this.clearUncomplete();
+    this.createElements();
+    this.bindEvents();
+  }
+
+  clearUncomplete() {
+    this.items = this.items.filter(item => {
+      return item.dataset.large;
+    });
+  }
+
+  createElements() {
+    this.gallery = document.createElement("DIV");
+    this.gallery.classList.add("asyncGallery");
+
+    this.createSingleElement({
+      element: "prev",
+      type: "BUTTON",
+      event: "click",
+      func: this.getPrevious
+    });
+
+    this.createSingleElement({
+      element: "next",
+      type: "BUTTON",
+      event: "click",
+      func: this.getNext
+    });
+
+    this.createSingleElement({
+      element: "close",
+      type: "BUTTON",
+      event: "click",
+      func: this.closeGallery
+    });
+
+    this.createSingleElement({
+      element: "loader",
+      type: "SPAN",
+      text: "Loading..."
+    });
+
+    this.createSingleElement({
+      element: "counter",
+      type: "SPAN",
+      text: "0/0"
+    });
+
+    this.createSingleElement({
+      element: "dots",
+      type: "UL",
+      text: ""
+    });
+
+    if (!this.settings.hiddenElements.includes("dots")) {
+      this.items.forEach((item, i) => {
+        let dot = document.createElement("LI");
+        dot.dataset.index = i;
+        let button = document.createElement("BUTTON");
+        button.innerHTML = i;
+        button.addEventListener("click", () => {
+          this.index = i;
+          this.getItem(i);
+        });
+
+        dot.append(button);
+        this.dots.append(dot);
+      });
+    }
+
+    window.document.body.append(this.gallery);
+  }
+
+  createSingleElement({ element, type, event = "click", func, text }) {
+    if (!this.settings.hiddenElements.includes(element)) {
+      if (!this.settings[element]) {
+        this[element] = document.createElement(type);
+        this[element].classList.add(
+          `asyncGallery__${this.capitalizeFirstLetter(element)}`
+        );
+        this[element].innerHTML = text !== undefined ? text : element;
+        this.gallery.append(this[element]);
+      } else {
+        this[element] = document.querySelector(this.settings[element]);
+        this.gallery.append(this[element]);
+      }
+
+      if (func) {
+        this[element].addEventListener(event, func.bind(this));
+      }
+    }
+  }
+
+  getItem(i, content = null) {
+    let contentObj = content;
+	
+    if (contentObj === null) {
+      contentObj = {};
+      contentObj.src = this.items[i].dataset.large;
+      contentObj.description = this.items[i].dataset.description;
+    }
+
+    if (!this.settings.hiddenElements.includes("counter")) {
+      this.counter.innerHTML = `
+          <span class="asyncGallery__Current">${this.index + 1}</span>${
+        this.settings.counterDivider
+      }<span class="asyncGallery__Current">${this.items.length}</span>
+          `;
+    }
+
+    if (!this.addedItems.hasOwnProperty(i)) {
+      let image = document.createElement("IMG");
+
+      let galleryItem = document.createElement("DIV");
+      galleryItem.classList.add("asyncGallery__Item");
+
+      if (this.loading) {
+        this.loader.classList.add("is-visible");
+      }
+
+      this.clearVisible();
+
+      if (this.dotsVisible) {
+        this.gallery
+          .querySelector(`.asyncGallery__Dots li[data-index="${i}"]`)
+          .classList.add("is-active");
+      }
+
+      image.src = contentObj.src;
+      image.alt = "car";
+	  
+	  galleryItem.innerHTML = `
+		<div class="asyncGallery__ItemImage">
+			${image.outerHTML}
+		</div>
+	  `;
+
+      this.gallery.append(galleryItem);
+      this.addedItems[i] = galleryItem;
+
+      image.addEventListener("load", () => {
+        this.addedItems[i].loaded = true;
+        if (!this.gallery.querySelector(".asyncGallery__Item.is-visible")) {
+          this.addedItems[i].classList.add("is-visible");
+        }
+
+        if (this.loading) {
+          this.loader.classList.remove("is-visible");
+        }
+      });
+    } else {
+      this.clearVisible();
+      if (this.addedItems[this.index].loaded) {
+        this.addedItems[this.index].classList.add("is-visible");
+        if (this.loading) {
+          this.loader.classList.remove("is-visible");
+        }
+      } else if (this.loading) {
+        this.loader.classList.add("is-visible");
+      }
+
+      if (this.dotsVisible) {
+        this.gallery
+          .querySelector(`.asyncGallery__Dots li[data-index="${i}"]`)
+          .classList.add("is-active");
+      }
+    }
+
+    if (!this.settings.loop) {
+      if (this.index === 0) this.prev.setAttribute("disabled", true);
+      else this.prev.removeAttribute("disabled");
+
+      if (this.index === this.items.length - 1)
+        this.next.setAttribute("disabled", true);
+      else this.next.removeAttribute("disabled");
+    }
+  }
+
+  clearVisible() {
+    if (this.gallery.querySelector(".asyncGallery__Item.is-visible")) {
+      this.gallery
+        .querySelector(".asyncGallery__Item.is-visible")
+        .classList.remove("is-visible");
+    }
+
+    if (this.gallery.querySelector(".asyncGallery__Dots li.is-active")) {
+      this.gallery
+        .querySelector(".asyncGallery__Dots li.is-active")
+        .classList.remove("is-active");
+    }
+  }
+
+  closeGallery() {
+    this.gallery.classList.remove("is-visible");
+    this.clearVisible();
+  }
+
+  capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  handleGesure() {
+    if (this.touch.endX > this.touch.startX + 20) {
+      this.getPrevious();
+    } else if (this.touch.endX < this.touch.startX - 20) {
+      this.getNext();
+    }
+  }
+
+  getPrevious() {
+    if (this.settings.loop) {
+      this.index--;
+      if (this.index === -1) {
+        this.index = this.items.length - 1;
+      }
+      this.getItem(this.index);
+    } else if (this.index > 0) {
+      this.index--;
+      this.getItem(this.index);
+    }
+  }
+
+  getNext() {
+    if (this.settings.loop) {
+      this.index++;
+      if (this.index === this.items.length) {
+        this.index = 0;
+      }
+      this.getItem(this.index);
+    } else if (this.index < this.items.length - 1) {
+      this.index++;
+      this.getItem(this.index);
+    }
+  }
+
+  bindEvents() {
+    this.items.forEach((item, i) => {
+      item.addEventListener("click", e => {
+        this.gallery.classList.add("is-visible");
+        this.index = i;
+        this.getItem(i, {
+          src: e.target.dataset.large,
+          description: e.target.dataset.description
+        });
+      });
+    });
+
+    document.addEventListener("keyup", e => {
+      if (this.gallery.classList.contains("is-visible")) {
+        if (e.key === "Escape") this.closeGallery();
+        if (this.settings.keyboardNavigation) {
+          if (e.keyCode === 39) this.getNext();
+          else if (e.keyCode === 37) this.getPrevious();
+        }
+      }
+    });
+
+    this.gallery.addEventListener(
+      "touchstart",
+      e => {
+        this.touch.startX = e.changedTouches[0].screenX;
+      },
+      false
+    );
+
+    this.gallery.addEventListener(
+      "touchend",
+      e => {
+        this.touch.endX = e.changedTouches[0].screenX;
+        this.handleGesure();
+      },
+      false
+    );
+  }
+}
+
+new AsyncGallery();
+
+</script>
+
+
+
+    <div class="col-md-6 col-sm-12">
+      <div class="car-wp row">
+        <h2>Характеристики автомобиля</h2>
+        <div class="row-col-2 order-md-1 order-2 car-chara">
+          <div class="d-flex">
+            <div class="car-info">
+              <p class>Год выпуска:</p>
+            </div>
+            {% if car.year %}
+            <p class="car-value">{{ car.year }} г.</p>
+            {% else %}
+            <p class="car-value">Нет данных</p>
+            {% endif %}
+          </div>
+          <div class="d-flex">
+            <div class="car-info">
+              <p>Кузов:</p>
+            </div>
+            {% if car.body_type %}
+            <p class="car-value">{{ car.body_type }}</p>
+            {% else %}
+            <p class="car-value">Нет данных</p>
+            {% endif %}
+          </div>
+          <div class="d-flex">
+            <div class="car-info">
+              <p>Страна:</p>
+            </div>
+            {% if country %}
+            <p class="car-value">{{ country }}</p>
+            {% else %}
+            <p class="car-value">Нет данных</p>
+            {% endif %}
+          </div>
+          <div class="d-flex">
+            <div class="car-info">
+              <p>КПП:</p>
+            </div>
+            {% if car.transmission %}
+            <p class="car-value">{{ car.transmission }}</p>
+            {% else %}
+            <p class="car-value">Нет данных</p>
+            {% endif %}
+          </div>
+          <div class="d-flex">
+            <div class="car-info">
+              <p>Двигатель:</p>
+            </div>
+            {% if car.fuel_type %}
+            <p class="car-value">{{ car.fuel_type }}</p>
+            {% else %}
+            <p class="car-value">Нет данных</p>
+            {% endif %}
+          </div>
+          <div class="d-flex">
+            <div class="car-info">
+              <p>Объем двигателя:</p>
+            </div>
+            {% if car.engine_volume %}
+            <p class="car-value">{{ car.engine_volume }} cc</p>
+            {% else %}
+            <p class="car-value">Нет данных</p>
+            {% endif %}
+          </div>
+          <div class="d-flex">
+            <div class="car-info">
+              <p>Привод:</p>
+            </div>
+            {% if car.drive %}
+            <p class="car-value">{{ car.drive }}</p>
+            {% else %}
+            <p class="car-value">Нет данных</p>
+            {% endif %}
+          </div>
+          <div class="d-flex">
+            <div class="car-info">
+              <p>Цвет:</p>
+            </div>
+            {% if car.color %}
+            <p class="car-value">{{ car.color }}</p>
+            {% else %}
+            <p class="car-value">Нет данных</p>
+            {% endif %}
+          </div>
+          <div class="d-flex">
+            <div class="car-info">
+              <p>Пробег:</p>
+            </div>
+            {% if car.mileage %}
+            <p class="car-value">{{ car.mileage | intspace }}</p>
+            {% else %}
+            <p class="car-value">Нет данных</p>
+            {% endif %}
+          </div>
+        </div>
+		
+		
+		<p class="car-price col-12 order-md-3 order-1">
+			{% if car.price %} 
+				от {{ car.price | intspace }} ₽
+			{% else %}
+				Уточнить цену
+			{% endif %} 
+		</p>
+		
+        {% if car.inside %}
+        <p class="car-value col-12 order-md-3 order-1" style="color: #757575">
+          Расходы по РФ: {{ car.inside | intspace }} ₽
+        </p>
+        {% endif %} 
+		
+		{% if car.outside %} 
+			{% if country == "Япония" %}
+			<p class="car-value col-12 order-md-3 order-1" style="color: #757575">
+			  Расходы по Японии: {{ car.outside | intspace }} ₽
+			</p>
+			{% endif %} 
+		
+			{% if country == "Китай" %}
+			<p class="car-value col-12 order-md-3 order-1" style="color: #757575">
+			  Расходы по Китаю: {{ car.outside | intspace }} ₽
+			</p>
+			{% endif %} 
+			
+			{% if country == "Япония" %} 
+				{% if car.engine_volume|add:"0" > 1900 %}
+				<p class="car-promotion col-12 order-md-3 order-1">
+				  Сроки доставки более ~2-3 месяца после покупки
+				</p>
+				{% else %}
+				<p class="car-promotion col-12 order-md-3 order-1">
+				  Сроки доставки более 2-3 недели после покупки
+				</p>
+				{% endif %} 
+			{% endif %} 
+			
+			{% if country == "Китай" %}
+			<p class="car-promotion col-12 order-md-3 order-1">
+			  Средний срок доставки 1 месяц
+			</p>
+			{% endif %}
+		{% endif %} 
+
+        <div class="order-md-4 order-4 car-wp__button-contact">
+          <button
+            class="btn goal-btn"
+            data-bs-toggle="modal"
+            data-bs-target="#mainFeedBackModal"
+            onclick="setModalInput('Я заинтересовался автомобилем {{car.brand}} {{car.model}} {{car.year}}')"
+          >
+            Оставить заявку
+          </button>
+
+          <div class="">
+            <a href="https://wa.me/79294201720?text=Здравствуйте!%20Посчитайте%20пожалуйста%20автомобиль" target="_blank">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_399_1211)">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M1.46543e-06 23.5382C0.00227839 23.6936 0.103437 23.8636 0.238112 23.9383C0.299788 23.9725 0.403037 24.0002 0.467554 24C0.532071 23.9998 1.72505 23.5913 3.11862 23.0924L5.65238 22.1852L5.88698 22.3241C6.84403 22.8908 8.38141 23.501 9.40609 23.7209C13.4504 24.5886 17.5792 23.3897 20.4808 20.505C22.3415 18.6551 23.527 16.256 23.935 13.5144C24.031 12.8696 24.0181 11.0234 23.9129 10.3465C23.6111 8.40448 22.9831 6.77328 21.9525 5.2544C20.0075 2.38783 17.0223 0.551221 13.5117 0.0613207C12.9258 -0.0204402 11.0946 -0.0204402 10.5087 0.0613207C7.78259 0.441754 5.40619 1.60986 3.51974 3.49674C1.63133 5.38558 0.481545 7.73221 0.0830534 10.5108C-0.00941999 11.1556 0.00684491 12.9589 0.111414 13.6552C0.219132 14.3725 0.499498 15.4915 0.722868 16.0957C0.898261 16.5701 1.4607 17.751 1.74287 18.2374L1.89627 18.5018L0.947306 20.9632C0.425375 22.3169 -0.000912033 23.4757 1.46543e-06 23.5382ZM16.0363 17.8873C16.5034 17.7262 16.8521 17.5112 17.1928 17.1744C17.5451 16.8262 17.7819 16.4434 17.9442 15.9598C18.0594 15.6166 18.0673 15.5419 18.0533 14.9208C18.0399 14.3301 18.0272 14.2394 17.9443 14.1475C17.8927 14.0903 17.3437 13.7893 16.7244 13.4787C15.6685 12.9491 15.5778 12.9125 15.2698 12.8924C14.7409 12.8579 14.1758 13.1042 13.6082 13.6165L13.3393 13.8593L12.9437 13.6635C11.7751 13.085 10.9306 12.2508 10.3582 11.1091L10.138 10.67L10.4484 10.2855C10.6191 10.074 10.8331 9.74256 10.924 9.54891C11.0718 9.23413 11.0895 9.15458 11.0909 8.79791L11.0925 8.39899L10.5209 7.26626C10.1593 6.54978 9.90287 6.09707 9.82309 6.0343C9.70815 5.94386 9.63792 5.93506 9.03144 5.93506C8.55973 5.93506 8.29171 5.95688 8.11107 6.00998C7.11642 6.30238 6.30994 7.14673 6.04843 8.16947C5.81057 9.09969 6.00809 10.0331 6.75246 11.4965C7.71173 13.3824 8.86394 14.8264 10.2023 15.82C11.6186 16.8716 13.2738 17.7299 14.3548 17.9735C14.8187 18.078 15.5994 18.038 16.0363 17.8873Z"
+                    fill="#25D366"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_399_1211">
+                    <rect width="24" height="24" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </a>
+          </div>
+
+          <div class="">
+            <a href="https://t.me/+79294201720">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_399_1216)">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12ZM12.4331 8.85905C11.2659 9.34452 8.93319 10.3493 5.43494 11.8735C4.86688 12.0993 4.56931 12.3203 4.54222 12.5364C4.49644 12.9016 4.95377 13.0454 5.57653 13.2413C5.66124 13.2679 5.74901 13.2955 5.83899 13.3247C6.45169 13.5239 7.27588 13.7569 7.70434 13.7662C8.09299 13.7746 8.52678 13.6143 9.00569 13.2855C12.2742 11.0791 13.9614 9.96394 14.0674 9.93989C14.1421 9.92293 14.2457 9.90161 14.3158 9.96397C14.386 10.0263 14.3791 10.1444 14.3717 10.1761C14.3263 10.3693 12.5312 12.0382 11.6022 12.9019C11.3126 13.1712 11.1071 13.3621 11.0651 13.4058C10.9711 13.5035 10.8752 13.5959 10.783 13.6847C10.2138 14.2335 9.78696 14.645 10.8067 15.3169C11.2967 15.6398 11.6888 15.9069 12.08 16.1733C12.5072 16.4642 12.9333 16.7544 13.4847 17.1158C13.6251 17.2079 13.7593 17.3035 13.8899 17.3967C14.3871 17.7511 14.8338 18.0695 15.3856 18.0188C15.7063 17.9893 16.0375 17.6877 16.2057 16.7885C16.6033 14.6633 17.3847 10.0586 17.5653 8.1611C17.5811 7.99485 17.5612 7.78209 17.5452 7.6887C17.5292 7.5953 17.4958 7.46223 17.3744 7.36372C17.2306 7.24706 17.0087 7.22246 16.9094 7.22421C16.4581 7.23216 15.7656 7.47294 12.4331 8.85905Z"
+                    fill="#28A8E9"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_399_1216">
+                    <rect width="24" height="24" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include 'feedback.html' %} 
+
+<section>
+  <h1>Вам может понравиться</h1>
+
+  <div class="marg-row row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4">
+    {% for car_rec in recommendations %}
+
+    <div class="col">
+      <div class="auto-card">
+        {% if country == "Япония" %}
+        <a href="/car_japan/{{car_rec.api_id}}">
+			{% if car_rec.photos.0 %}
+			<img src="{{car_rec.photos.0}}" alt="car" />
+			{% else %}
+			<img src="/media/{{car_rec.photos.all.0}}" alt="car" />
+			{% endif %}
+        </a>
+        {% endif %} 
+		
+		{% if country == "Китай" %}
+        <a href="/car_china/{{car_rec.api_id}}">
+			{% if car_rec.photos.0 %}
+			<img src="{{car_rec.photos.0}}" alt="car" />
+			{% else %}
+			<img src="/media/{{car_rec.photos.all.0}}" alt="car" />
+			{% endif %}
+        </a>
+        {% endif %} 
+		
+		{% if country == "Корея" %}
+        <a href="/cars/{{car_rec.api_id}}">
+          <img src="/media/{{car_rec.photos.all.0}}" alt="car" />
+        </a>
+        {% endif %}
+
+        <div class="car-info">
+          <h3 class="my-0">{{car_rec.brand}} {{car_rec.model}}</h3>
+          <p>{{car_rec.year}} • {{car_rec.engine_volume}} cc • 
+			{% if car_rec.drive %}
+				{{car_rec.drive}}
+			{% else %}
+				n/a
+			{% endif %}
+				• 
+			{% if car_rec.mileage %}
+				{{car_rec.mileage|intspace}} км
+			{% else %}
+				n/a
+			{% endif %}
+		  </p>
+		  
+		  <div class="d-flex justify-content-between align-items-center adapt-auto-info">
+            <span class="mb-sm-0 mb-2">
+				{% if car_rec.price != 0 %}
+					{{car_rec.price|intspace}} ₽
+				{% else %}
+					Уточнить цену
+				{%endif%}
+			</span>
+            <button class="btn submit-app"  data-bs-toggle="modal" data-bs-target="#mainFeedBackModal" onclick="setModalInput('Я заинтересовался автомобилем {{car.brand}} {{car.model}} {{car.year}}')">Оставить заявку</button>
+          </div>	  
+		  
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+  h1 {
+    font-size: 32px;
+    font-weight: 900;
+    margin-bottom: 24px !important;
+  }
+
+  @media (max-width: 1252px) {
+    h1 {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 24px !important;
+    }
+  }
+
+  @media (max-width: 960px) {
+    h1 {
+      font-size: 20px;
+      font-weight: 900;
+      margin-bottom: 16px !important;
+    }
+  }
+
+  @media (max-width: 420px) {
+    h1 {
+      font-size: 18px;
+      font-weight: 900;
+      margin-bottom: 16px !important;
+    }
+  }
+
+  h2 {
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    margin-bottom: 24px !important;
+  }
+
+  @media (max-width: 877px) {
+    h2 {
+      font-size: 20px !important;
+      font-weight: 700 !important;
+      margin-bottom: 16px !important;
+    }
+  }
+
+  @media (max-width: 767px) {
+    h2 {
+      display: none;
+    }
+  }
+
+  .car-wp .goal-btn {
+    padding: 24px 32px;
+    max-width: 217px;
+    margin-top: 0px !important;
+  }
+
+  @media (max-width: 869px) {
+    .goal-btn {
+      font-size: 12px !important;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .car-wp .goal-btn {
+      font-size: 14px !important;
+    }
+  }
+
+  .car-wp__button-contact {
+    display: flex;
+    align-items: center;
+    margin-top: 32px;
+  }
+
+  .car-wp__button-contact > *:not(:last-child) {
+    margin-right: 12px;
+  }
+
+  /*.gallery {
+    max-width: 640px;
+  }*/
+
+  .car-card {
+    margin-top: 126px;
+  }
+
+  @media (max-width: 767px) {
+    .car-card {
+      margin-top: 88px;
+      margin-bottom: 40px;
+    }
+  }
+
+  .car-wp {
+    margin-left: 50px;
+  }
+
+  @media (max-width: 767px) {
+    .car-wp {
+      margin-left: 0px;
+    }
+  }
+
+  .car-wp a {
+    background-color: #f8f8f8;
+    padding: 23px;
+    border-radius: 15px;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .car-wp a:hover {
+    background-color: #ededed;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  @media (max-width: 1200px) {
+    .car-wp a {
+      padding: 15px;
+      border-radius: 10px;
+    }
+  }
+
+  .car-chara .d-flex {
+    margin-bottom: 12px;
+  }
+
+  .car-chara .d-flex:last-child {
+    margin-bottom: 0px;
+  }
+
+  .car-wp .car-info {
+    width: 150px;
+    margin-right: 32px;
+  }
+
+  .car-wp .car-info p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #757575;
+  }
+
+  @media (max-width: 877px) {
+    .car-wp .car-info p {
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+
+  .car-wp .car-info p:last-child {
+    margin-bottom: 0px;
+  }
+
+  .car-wp .car-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: #191919;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 877px) {
+    .car-wp .car-value {
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+
+  .car-wp .car-value:last-child {
+    margin-bottom: 0px;
+  }
+
+  .car-wp .car-price {
+    font-size: 24px;
+    font-weight: 700;
+    color: #191919;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 877px) {
+    .car-wp .car-price {
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .car-wp a {
+      padding: 8.5px;
+      border-radius: 10px;
+    }
+
+    .car-wp .car-price {
+      margin-bottom: 0px;
+    }
+  }
+
+  #container {
+    max-width: 100%;
+  }
+
+  .main-slides {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .main-slides img {
+    width: 100%;
+    border-radius: 16px;
+    transition: all 0.3s ease-out 0s;
+  }
+
+  .main-slides > .gallery-slide {
+    display: none;
+  }
+
+  .main-slides > .gallery-slide:nth-child(1) {
+    display: block;
+  }
+
+  .previous-slide-button,
+  .next-slide-button,
+  .slides-counter {
+    display: none !important;
+  }
+
+  .thumbnail-slides {
+    margin-top: 8px;
+    padding: 8px;
+    text-align: left;
+  }
+
+  .thumbnail-slides > img {
+    width: 100px;
+    height: 80px;
+    cursor: pointer;
+    margin-right: 1px;
+    margin-left: 1px;
+    padding: 3px;
+    transition: all 0.3s ease-out 0s;
+    border-radius: 12px;
+  }
+
+  .thumbnail-slides > img:hover {
+    transform: scale(1.1, 1.1);
+  }
+
+  .car-promotion {
+    font-size: 16px;
+    font-weight: 400;
+    color: #757575;
+    margin-bottom: 0px;
+  }
+
+  @media (max-width: 767px) {
+    .car-promotion {
+      margin-bottom: 24px;
+    }
+  }
+</style>
+
+<script>
+  window.onload = (function () {
+    let mainSlides = document.querySelectorAll(".main-slides > .gallery-slide");
+    let thumbnailSlidesParent = document.querySelector(".thumbnail-slides");
+    let mainSlidesCount = mainSlides.length;
+    let actionButtons = document.querySelectorAll(
+      ".main-slides > .slider-controller-button"
+    );
+    let slidesCount = document.querySelector(".all-slides-count");
+    let slideCountCurr = document.querySelector(".curr-slide-count");
+    let previousSlideButton = document.querySelector(".previous-slide-button");
+    let nextSlideButton = document.querySelector(".next-slide-button");
+
+    // ### Initializing the slider ###
+    (function () {
+      if (mainSlidesCount >= 2) {
+        slideCountCurr.innerText = 1;
+        slidesCount.innerText = mainSlidesCount;
+        initializeThumbnailSlides();
+        actionButtons.forEach(function (currButton) {
+          currButton.style.display = "block";
+        });
+      }
+    })();
+
+    // Creates and attaches bottom thumbnail images for main slides
+    function initializeThumbnailSlides() {
+      for (let i = 0; i < mainSlidesCount; i++) {
+        var createImage = document.createElement("img");
+        createImage.src = mainSlides[i].src;
+        createImage.classList = mainSlides[i].classList;
+        createImage.classList.remove("gallery-slide");
+        createImage.classList += " gallery-slide-thumbnail";
+        createImage.width = 96;
+        createImage.height = 90;
+        thumbnailSlidesParent.appendChild(createImage);
+      }
+    }
+    // ### THE END OF ### Initializing the slider
+
+    // Determining current displaying image position in `mainSlides` array
+    function currSliderImagePos() {
+      for (let i = 0; i < mainSlides.length; i++) {
+        if (
+          window.getComputedStyle(mainSlides[i]).display !== "none" &&
+          typeof mainSlides[i] !== "undefined"
+        ) {
+          return i;
+        }
+      }
+      return false;
+    }
+
+    // Determining previous displaying image position in `mainSlides` array
+    function prevSliderImagePos(pos) {
+      if (pos >= 0 && typeof mainSlides[pos - 1] !== "undefined") {
+        return pos - 1;
+      }
+      return false;
+    }
+
+    // Determining next displaying image position in `mainSlides` array
+    function nextSliderImagePos(pos) {
+      if (pos >= 0 && typeof mainSlides[pos + 1] !== "undefined") {
+        return pos + 1;
+      }
+      return false;
+    }
+
+    function hideSlide(currSlide, duration) {
+      thumbnailSlides[currSlide].style.border = "none";
+      // mainSlides[currSlide].style.opacity = 0;
+      mainSlides[currSlide].style.display = "none";
+      setTimeout(function () {}, duration);
+    }
+
+    function showSlide(nextSlide, duration) {
+      // mainSlides[nextSlide].style.opacity = 1;
+      mainSlides[nextSlide].style.display = "block";
+      setTimeout(function () {}, duration);
+    }
+
+    let thumbnailSlides = document.querySelectorAll(
+      ".thumbnail-slides > .gallery-slide-thumbnail"
+    );
+
+    nextSlideButton.addEventListener("click", function () {
+      let currentSliderImage = currSliderImagePos();
+      let nextSliderImage = nextSliderImagePos(currentSliderImage);
+      let imageTransitionDuration =
+        window
+          .getComputedStyle(mainSlides[currentSliderImage])
+          .transitionDuration.replace("s", "") * 1000;
+
+      if (currentSliderImage !== false && nextSliderImage !== false) {
+        hideSlide(currentSliderImage, imageTransitionDuration);
+      }
+
+      if (nextSliderImage !== false) {
+        slideCountCurr.innerText =
+          nextSliderImage <= mainSlides.length
+            ? nextSliderImage + 1
+            : mainSlides.length;
+        showSlide(nextSliderImage, imageTransitionDuration);
+      }
+    });
+
+    previousSlideButton.addEventListener("click", function () {
+      let currentSliderImage = currSliderImagePos();
+      let prevSliderImage = prevSliderImagePos(currentSliderImage);
+      let imageTransitionDuration =
+        window
+          .getComputedStyle(mainSlides[currentSliderImage])
+          .transitionDuration.replace("s", "") * 1000;
+
+      if (currentSliderImage !== false && prevSliderImage !== false) {
+        hideSlide(currentSliderImage, imageTransitionDuration);
+      }
+
+      if (prevSliderImage !== false) {
+        slideCountCurr.innerText =
+          prevSliderImage <= mainSlides.length
+            ? currentSliderImage
+            : mainSlides.length;
+        showSlide(prevSliderImage, imageTransitionDuration);
+      }
+    });
+
+    let changeSlide = document.querySelector(".thumbnail-slides");
+
+    changeSlide.addEventListener("click", function (e) {
+      if (e.target.tagName === "IMG") {
+        let clickedImagePos = Array.prototype.indexOf.call(
+          e.currentTarget.children,
+          e.target
+        );
+        let currentSliderImage = currSliderImagePos();
+        let imageTransitionDuration =
+          window
+            .getComputedStyle(mainSlides[0])
+            .transitionDuration.replace("s", "") * 1000;
+
+        if (currentSliderImage !== false) {
+          hideSlide(currentSliderImage, imageTransitionDuration);
+        }
+
+        if (clickedImagePos >= 0) {
+          slideCountCurr.innerText =
+            currentSliderImage <= mainSlides.length
+              ? clickedImagePos + 1
+              : mainSlides.length;
+          showSlide(clickedImagePos, imageTransitionDuration);
+        }
+      }
+    });
+  })();
+</script>
+
+
+<script>
+	function rm_bad_img(original_img) {
+		var img = new Image();
+		img.onload = function() {
+			if (img.width === 1 && img.height === 1) {
+				original_img.classList.add("INCORRECT");
+				original_img.style.display = "none";
+			}
+		};
+		img.src = original_img.src;
+	}
+	
+	document.querySelectorAll('.gallery__Image').forEach(function(original_img) {
+		rm_bad_img(original_img)
+	});    
+</script>
+
+{% endblock %}
