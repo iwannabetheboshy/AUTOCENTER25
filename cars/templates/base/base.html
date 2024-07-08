@@ -777,6 +777,125 @@
     </div>
   </div>
 
+  <!-- Чат-менеджер -->
+  <div id="body">
+    <div id="chat-caravan">
+        <div id="msg-right"></div>
+
+        <div style="width: 50px; height: 100%">
+            <img src="{% static 'img/chat-manager.png' %}" alt="..." />
+        </div>
+
+        <div style="padding-left: 16px;">
+            <span>Андрей</span>
+            <p class="my-0 py-0" style="color: #9F9F9F; font-size: 12px;">директор </p>
+            <p class="my-0">Здравствуйте, меня зовут Андрей.<br>Чем могу Вам помочь?</p>
+        </div>
+    </div>
+
+    <div id="chat-circle" class="btn btn-raised" style="border: none;">
+        <div id="pulse">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="56" height="56" rx="28" fill="#E42320"/>
+                <g clip-path="url(#clip0_329_2597)">
+                    <path d="M28 18C33.5228 18 38 22.4771 38 28C38 33.5228 33.5228 38 28 38H20C18.8954 38 18 37.1046 18 36V28C18 22.4771 22.4771 18 28 18ZM28 30H25C24.4477 30 24 30.4477 24 31C24 31.5523 24.4477 32 25 32H28C28.5523 32 29 31.5523 29 31C29 30.4477 28.5523 30 28 30ZM31 26H25C24.4477 26 24 26.4477 24 27C24 27.5128 24.386 27.9355 24.8834 27.9933L25 28H31C31.5523 28 32 27.5523 32 27C32 26.4872 31.614 26.0645 31.1166 26.0067L31 26Z" fill="#F9F9F9"/>
+                </g>
+                <defs>
+                    <clipPath id="clip0_329_2597">
+                        <rect width="24" height="24" fill="white" transform="translate(16 16)"/>
+                    </clipPath>
+                </defs>
+            </svg>
+        </div>
+    </div>
+
+    <div class="chat-box">
+        <div class="chat-box-header">
+
+          <div class="manager row">
+            <img class="chat-manager col" src="{% static 'img/chat-manager.png' %}" alt="icon">
+            <div class="col gx-0">
+              <p class="user-manager-name align-items-start">Андрей</p>
+              <p class="user-manager-status">Online</p>
+            </div>
+          </div>
+
+          <span class="chat-box-toggle">
+              <svg width="10" height="10" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M8.00024 8.9144L13.657 14.5713C14.0475 14.9618 14.6807 14.9618 15.0712 14.5713C15.4617 14.1807 15.4617 13.5476 15.0712 13.157L9.41444 7.5002L15.0712 1.84335C15.4617 1.45283 15.4617 0.819661 15.0712 0.429141C14.6807 0.0386105 14.0475 0.0386105 13.657 0.429141L8.00024 6.086L2.34333 0.42912C1.95281 0.0386005 1.31964 0.0386005 0.92912 0.42912C0.5386 0.81965 0.5386 1.45281 0.92912 1.84334L6.58594 7.5002L0.92912 13.1571C0.5386 13.5476 0.5386 14.1807 0.92912 14.5713C1.31964 14.9618 1.95281 14.9618 2.34333 14.5713L8.00024 8.9144Z" fill="#111111"/>
+              </svg>
+          </span>
+        </div>
+        
+        <div class="chat-box-body">
+            <div class="chat-logs">
+              <img class="chat-logs__chat-manager" src="{% static 'img/chat-manager.png' %}" alt="icon">
+              <div class="default-text-msg">
+                  Здравствуйте!👋
+                  <br>
+                  <br>
+                  Мы в любое время готовы ответить на любые Ваши вопросы (цена авто, сроки поставки, условия договора и пр.)
+              </div>
+            </div>
+
+            <a class="btn-social-chat-box__whatsaap" target="_blank" href="https://wa.me/79294201720?text=Здравствуйте!%20Посчитайте%20пожалуйста%20автомобиль">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_399_1211)">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M1.46543e-06 23.5382C0.00227839 23.6936 0.103437 23.8636 0.238112 23.9383C0.299788 23.9725 0.403037 24.0002 0.467554 24C0.532071 23.9998 1.72505 23.5913 3.11862 23.0924L5.65238 22.1852L5.88698 22.3241C6.84403 22.8908 8.38141 23.501 9.40609 23.7209C13.4504 24.5886 17.5792 23.3897 20.4808 20.505C22.3415 18.6551 23.527 16.256 23.935 13.5144C24.031 12.8696 24.0181 11.0234 23.9129 10.3465C23.6111 8.40448 22.9831 6.77328 21.9525 5.2544C20.0075 2.38783 17.0223 0.551221 13.5117 0.0613207C12.9258 -0.0204402 11.0946 -0.0204402 10.5087 0.0613207C7.78259 0.441754 5.40619 1.60986 3.51974 3.49674C1.63133 5.38558 0.481545 7.73221 0.0830534 10.5108C-0.00941999 11.1556 0.00684491 12.9589 0.111414 13.6552C0.219132 14.3725 0.499498 15.4915 0.722868 16.0957C0.898261 16.5701 1.4607 17.751 1.74287 18.2374L1.89627 18.5018L0.947306 20.9632C0.425375 22.3169 -0.000912033 23.4757 1.46543e-06 23.5382ZM16.0363 17.8873C16.5034 17.7262 16.8521 17.5112 17.1928 17.1744C17.5451 16.8262 17.7819 16.4434 17.9442 15.9598C18.0594 15.6166 18.0673 15.5419 18.0533 14.9208C18.0399 14.3301 18.0272 14.2394 17.9443 14.1475C17.8927 14.0903 17.3437 13.7893 16.7244 13.4787C15.6685 12.9491 15.5778 12.9125 15.2698 12.8924C14.7409 12.8579 14.1758 13.1042 13.6082 13.6165L13.3393 13.8593L12.9437 13.6635C11.7751 13.085 10.9306 12.2508 10.3582 11.1091L10.138 10.67L10.4484 10.2855C10.6191 10.074 10.8331 9.74256 10.924 9.54891C11.0718 9.23413 11.0895 9.15458 11.0909 8.79791L11.0925 8.39899L10.5209 7.26626C10.1593 6.54978 9.90287 6.09707 9.82309 6.0343C9.70815 5.94386 9.63792 5.93506 9.03144 5.93506C8.55973 5.93506 8.29171 5.95688 8.11107 6.00998C7.11642 6.30238 6.30994 7.14673 6.04843 8.16947C5.81057 9.09969 6.00809 10.0331 6.75246 11.4965C7.71173 13.3824 8.86394 14.8264 10.2023 15.82C11.6186 16.8716 13.2738 17.7299 14.3548 17.9735C14.8187 18.078 15.5994 18.038 16.0363 17.8873Z"></path>
+                </g>
+                <defs>
+                  <clipPath id="clip0_399_1211">
+                    <rect width="24" height="24" fill="white"></rect>
+                  </clipPath>
+                </defs>
+              </svg>
+            </a>
+            
+            <a class="btn-social-chat-box__telegram" target="_blank" href="https://t.me/+79294201720">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_399_1216)">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12ZM12.4331 8.85905C11.2659 9.34452 8.93319 10.3493 5.43494 11.8735C4.86688 12.0993 4.56931 12.3203 4.54222 12.5364C4.49644 12.9016 4.95377 13.0454 5.57653 13.2413C5.66124 13.2679 5.74901 13.2955 5.83899 13.3247C6.45169 13.5239 7.27588 13.7569 7.70434 13.7662C8.09299 13.7746 8.52678 13.6143 9.00569 13.2855C12.2742 11.0791 13.9614 9.96394 14.0674 9.93989C14.1421 9.92293 14.2457 9.90161 14.3158 9.96397C14.386 10.0263 14.3791 10.1444 14.3717 10.1761C14.3263 10.3693 12.5312 12.0382 11.6022 12.9019C11.3126 13.1712 11.1071 13.3621 11.0651 13.4058C10.9711 13.5035 10.8752 13.5959 10.783 13.6847C10.2138 14.2335 9.78696 14.645 10.8067 15.3169C11.2967 15.6398 11.6888 15.9069 12.08 16.1733C12.5072 16.4642 12.9333 16.7544 13.4847 17.1158C13.6251 17.2079 13.7593 17.3035 13.8899 17.3967C14.3871 17.7511 14.8338 18.0695 15.3856 18.0188C15.7063 17.9893 16.0375 17.6877 16.2057 16.7885C16.6033 14.6633 17.3847 10.0586 17.5653 8.1611C17.5811 7.99485 17.5612 7.78209 17.5452 7.6887C17.5292 7.5953 17.4958 7.46223 17.3744 7.36372C17.2306 7.24706 17.0087 7.22246 16.9094 7.22421C16.4581 7.23216 15.7656 7.47294 12.4331 8.85905Z"></path>
+                </g>
+                <defs>
+                  <clipPath id="clip0_399_1216">
+                    <rect width="24" height="24" fill="white"></rect>
+                  </clipPath>
+                </defs>
+              </svg>
+            </a>
+            
+            <a href="tel:88005501720" class="btn-social-chat-box__phone">
+              <svg  width="24" height="24" fill="currentColor" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 287.32 287.32" style="enable-background:new 0 0 287.32 287.32;" xml:space="preserve"><path d="M267.749,191.076c-14.595-11.729-27.983-17.431-40.93-17.431c-18.729,0-32.214,11.914-44.423,24.119 c-1.404,1.405-3.104,2.06-5.349,2.06c-10.288,0.001-28.387-12.883-53.794-38.293c-29.89-29.892-41.191-48.904-33.592-56.506 c20.6-20.593,27.031-41.237-4.509-80.462C73.861,10.51,62.814,3.68,51.38,3.68c-15.42,0-27.142,12.326-37.484,23.202 c-1.788,1.88-3.477,3.656-5.133,5.312c-11.689,11.688-11.683,37.182,0.017,68.2c12.837,34.033,38.183,71.055,71.37,104.247 c25.665,25.663,53.59,46.403,80.758,60.328c23.719,12.158,46.726,18.672,64.783,18.672c0.002,0,0.004,0,0.007,0 c11.3,0,20.479-2.465,26.541-7.478c12.314-10.181,35.234-29.039,35.081-51.439C287.236,212.71,280.653,201.451,267.749,191.076z"/>
+
+              <defs>
+                <clipPath id="clip0_399_1211">
+                  <rect width="24" height="24" fill="white"></rect>
+                </clipPath>
+              </defs>
+              </svg>
+            </a>
+        </div>
+        <!-- <div class="chat-input">
+            <form>
+                <input type="text" id="chat-input" placeholder="Введите сообщение..."/>
+                <button type="submit" class="chat-submit" id="chat-submit">
+                    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="44" height="44" rx="12" fill="#E42320"/>
+                        <g clip-path="url(#clip0_329_3638)">
+                            <path d="M22.7072 13.6362C22.3167 13.2456 21.6835 13.2456 21.293 13.6362L15.6362 19.293C15.2456 19.6835 15.2456 20.3167 15.6362 20.7072C16.0267 21.0977 16.6598 21.0977 17.0504 20.7072L21.0001 16.7575V30.0001C21.0001 30.5524 21.4478 31.0001 22.0001 31.0001C22.5524 31.0001 23.0001 30.5524 23.0001 30.0001V16.7575L26.9498 20.7072C27.3404 21.0977 27.9735 21.0977 28.3641 20.7072C28.7546 20.3167 28.7546 19.6835 28.3641 19.293L22.7072 13.6362Z" fill="#F9F9F9"/>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_329_3638">
+                                <rect width="24" height="24" fill="white" transform="translate(10 10)"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </button>
+            </form>
+        </div> -->
+    </div>
+  </div>
+
   <div class="toast-container position-fixed bottom-0 end-0 p-3">
     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
@@ -823,6 +942,127 @@
       }
 
       console.log("Input field clicked!"); //Для проверки
+    });
+  </script>
+
+  <!-- <script>
+    let tel_chat;
+    let que_chat;
+    let name_chat = "Неизвестный";
+
+    $(function() {
+      var INDEX = 0;
+      $("#chat-submit").click(function(e) {
+        e.preventDefault();
+        var msg = $("#chat-input").val();
+        if(msg.trim() == ''){
+          return false;
+        }
+        generate_message(msg, 'self');
+        var buttons = [
+            {
+              name: 'Existing User',
+              value: 'existing'
+            },
+            {
+              name: 'New User',
+              value: 'new'
+            }
+          ];
+        setTimeout(function() {
+          generate_message(msg, 'user');
+        }, 1000)
+
+      })
+
+      var flag_close = false
+
+      function generate_message(msg, type) {
+        INDEX++;
+        if (flag_close == true) {
+            if ((INDEX % 2) == false ) {
+                    msg = 'Через пару минут мы свяжемся с Вами'
+            }
+        }
+
+        else {
+            if (INDEX == 2) {
+                que_chat = msg;
+                msg = 'Ваш запрос принят! Ввдедите свой номер телефона, чтобы мы могли связаться с Вами и ответить на все вопросы'
+            }
+
+            else if (INDEX > 2)  {
+                var regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+                var isValid = regex.test(msg);
+
+                if ((INDEX % 2) == false ) {
+                    if (isValid == true) {
+                        tel_chat = msg;
+                        $.ajax({
+                        data: {
+                            name:name_chat,
+                            number:tel_chat,
+                            message:que_chat,
+                            csrfmiddlewaretoken:$('#feedback-form-modal input[name=csrfmiddlewaretoken]').val()
+                        },
+                            type: "POST",
+                            datatype: 'json',
+                            url:'/feedback/',
+                        });
+
+                        msg = 'Спасибо! Скоро мы свяжемся с Вами'
+                        flag_close = true
+                    }
+                    else {
+                        msg = 'Некоректный формат номера. Попробйте еще раз.<br>Пример: 89123456788'
+                    }
+                }
+            }
+        }
+
+        var str="";
+        str += "<div id='cm-msg-"+INDEX+"' class=\"chat-msg "+type+"\">";
+        str += "          <span class=\"msg-avatar\">";
+        str += "          <\/span>";
+        str += "          <div class=\"cm-msg-text\">";
+        str += msg;
+        str += "          <\/div>";
+        str += "        <\/div>";
+        $(".chat-logs").append(str);
+        $("#cm-msg-"+INDEX).hide().fadeIn(100);
+        if(type == 'self'){
+            $("#chat-input").val('');
+        }
+        $(".chat-logs").stop().animate({ scrollTop: $(".chat-logs")[0].scrollHeight}, 200);
+      }
+
+      $(document).delegate(".chat-btn", "click", function() {
+        var value = $(this).attr("chat-value");
+        var name = $(this).html();
+        $("#chat-input").attr("disabled", false);
+        generate_message(name, 'self');
+      })
+
+      $("#chat-circle").click(function() {
+        $("#chat-circle").toggle('scale');
+        $(".chat-box").toggle('scale');
+      })
+
+      $(".chat-box-toggle").click(function() {
+        $("#chat-circle").toggle('scale');
+        $(".chat-box").toggle('scale');
+      })
+
+    })
+  </script> -->
+
+  <script>
+    $("#chat-circle").click(function() {
+      $(".chat-box").addClass('chat-box-visible');
+    });
+    
+    $(".chat-box-toggle").click(function() {
+      $(".chat-box").removeClass('chat-box-visible');
     });
   </script>
 
