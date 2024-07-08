@@ -264,13 +264,13 @@ header .btn-social-header li:last-child {
 
 @media (max-width: 1600px) {
     .logo-switch {
-        width: 200px;
+        width: 200px !important;
     }
 }
 
 @media (max-width: 1400px) {
     .logo-switch {
-		width: 120px;
+		width: 120px !important;
     }
 
     header .btn-social-header li {
