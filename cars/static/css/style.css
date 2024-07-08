@@ -106,6 +106,65 @@
     }
   }
 
+.mobile-social {
+
+}
+
+.mobile-social .btn-social-mobile-social__instagram svg {
+  cursor: pointer;
+  fill: #a83078;
+  transition: fill 0.3s ease-in-out;
+}
+
+.mobile-social .btn-social-mobile-social__telegram svg {
+  cursor: pointer;
+  fill: #28a8e9;
+  transition: fill 0.3s ease-in-out;
+}
+
+.mobile-social svg:hover {
+  fill: #eb1c24;
+  transition: fill 0.3s ease-in-out;
+}
+
+.mobile-social .btn {
+  padding-top: 18px !important;
+  padding-bottom: 18px !important;
+  width: 280px !important;
+  border-radius: 40px !important;
+  background: #EB1C24 !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.mobile-social .btn:hover {
+  background: #D90008 !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  outline: none !important;
+}
+
+@media (max-width:575px) {
+  .mobile-social {
+    position: fixed; 
+    bottom: 10px; 
+    left: 0; 
+    width: 100%;
+    z-index: 100;
+  }
+}
+@media (max-width: 440px) {
+  .mobile-social .btn {
+    width: 200px !important;
+    font-size: 16px !important;
+
+  }
+}
+
 
 body { 
     margin-left: auto !important;
