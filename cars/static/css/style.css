@@ -1659,6 +1659,12 @@ header button {
     color: #F3F3F3 !important;
 }
 
+@media (max-width: 1330px) {
+	.contacts a {
+    font-size: 14px;
+}
+}
+
 .contacts a:hover {
     color: #EB1C24 !important;
     cursor: pointer;
@@ -1749,11 +1755,7 @@ header button {
     outline: none !important;
 }
 
-@media (max-width: 1400px) {
-    .form-wp {
-        padding: 32px 28px !important;
-    }
-}
+
 
 @media (max-width: 1200px) {
     .contacts {
