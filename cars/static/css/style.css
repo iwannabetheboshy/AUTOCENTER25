@@ -19,6 +19,12 @@
     transition: fill 0.3s ease-in-out;
   }
 
+  .form-feedback .contacts-info-click .btn-social-form-feedback__whatsaap svg {
+    cursor: pointer;
+    fill: #25d366;
+    transition: fill 0.3s ease-in-out;
+  }
+
   .form-feedback .contacts-info-click svg:hover {
     fill: #eb1c24;
     transition: fill 0.3s ease-in-out;
