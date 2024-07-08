@@ -6,6 +6,35 @@
   .contacts-info-text {
     margin-bottom: 55px !important;
   } 
+  
+  .form-feedback .contacts-info-click .btn-social-form-feedback__instagram svg {
+    cursor: pointer;
+    fill: #a83078;
+    transition: fill 0.3s ease-in-out;
+  }
+
+  .form-feedback .contacts-info-click .btn-social-form-feedback__telegram svg {
+    cursor: pointer;
+    fill: #28a8e9;
+    transition: fill 0.3s ease-in-out;
+  }
+
+  .form-feedback .contacts-info-click svg:hover {
+    fill: #eb1c24;
+    transition: fill 0.3s ease-in-out;
+  }
+
+  .form-feedback .contacts-info-click .social-link {
+    margin-bottom: 15px;
+  }
+  
+  .form-feedback .contacts-info-click .social-link a {
+    margin-right: 20px;
+  }
+
+  .form-feedback .contacts-info-click .social-link a:last-child {
+    margin-right: 0px;
+  }
 
   .contacts .contact-body img {
     margin-left: 0px;
@@ -34,6 +63,7 @@
   .about {
       margin-bottom: 60px;
   }
+
 
   @media (max-width: 992px) {
       .form-feedback {
