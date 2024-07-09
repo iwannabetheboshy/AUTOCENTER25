@@ -6,6 +6,12 @@
   .contacts-info-text {
     margin-bottom: 55px !important;
   } 
+
+	.form-feedback .contacts-info-click .btn-social-form-feedback__instagram div {
+		padding: 10px;
+		border-radius: 16px;
+		background-color: #fff;
+	}
   
   .form-feedback .contacts-info-click .btn-social-form-feedback__instagram svg {
     cursor: pointer;
@@ -13,11 +19,23 @@
     transition: fill 0.3s ease-in-out;
   }
 
+	.form-feedback .contacts-info-click .btn-social-form-feedback__telegram div {
+		padding: 10px;
+		border-radius: 16px;
+		background-color: #fff;
+	}
+
   .form-feedback .contacts-info-click .btn-social-form-feedback__telegram svg {
     cursor: pointer;
     fill: #28a8e9;
     transition: fill 0.3s ease-in-out;
   }
+
+	.form-feedback .contacts-info-click .btn-social-form-feedback__whatsaap span {
+		/* padding: 15px; */
+		border-radius: 16px;
+		background-color: #fff;
+	}
 
   .form-feedback .contacts-info-click .btn-social-form-feedback__whatsaap svg {
     cursor: pointer;
@@ -111,12 +129,16 @@
 }
 
 .mobile-social .btn-social-mobile-social__instagram svg {
+	background-color: #ffffff;
+	border-radius: 50%;
   cursor: pointer;
   fill: #a83078;
   transition: fill 0.3s ease-in-out;
 }
 
 .mobile-social .btn-social-mobile-social__telegram svg {
+	background-color: #ffffff;
+	border-radius: 50%;
   cursor: pointer;
   fill: #28a8e9;
   transition: fill 0.3s ease-in-out;
@@ -1674,7 +1696,13 @@ header button {
 
 
 .form-wp {
-    padding: 40px !important;
+  padding: 40px !important;
+}
+
+@media (max-width: 1523px) {
+	.form-wp {
+		padding-bottom: 78px !important;
+	}
 }
 
 .form-wp h5 {
