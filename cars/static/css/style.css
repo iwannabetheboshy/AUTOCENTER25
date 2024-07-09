@@ -1819,8 +1819,8 @@ header button {
 
 #chat-circle {
   position: fixed;
-  bottom: 50px;
-  right: 50px;
+  bottom: 30px;
+  right: 30px;
   width: 80px;
   height: 80px;
   color: white;
@@ -1834,10 +1834,17 @@ header button {
   }
 }
 
+.icon-chat {
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	/* box-shadow: 0px 0px 36px 9px rgba(34, 60, 80, 0.5); */
+	background-color: #EB1C24 ;
+}
 
 
 #pulse {
-  width: 56px;
+  width: 64px;
   border-radius: 50%;
   animation: pulse-animation 2s infinite;
 }
@@ -1852,7 +1859,6 @@ header button {
 }
 
 #pulse svg {
-	box-shadow: 0px 0px 36px 9px rgba(34, 60, 80, 0.5);
 	border-radius: 50%;
 }
 
@@ -1918,18 +1924,33 @@ header button {
 }
 
 .chat-box {
-  display:none;
   background: #ffffff;
   position: fixed;
   right:30px;
-  bottom:50px;
+  /* bottom:120px; */
+	opacity: 0;
   width:350px;
   max-width: 85vw;
   max-height:100vh;
   border-radius: 16px;
-  -webkit-box-shadow: 0px 0px 15px 3px rgba(0,0,0,0.52); 
-  box-shadow: 0px 0px 15px 3px rgba(0,0,0,0.52);
-  transition: all 0.5s ease;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 30px 0px;
+}
+
+.chat-box-divisible {
+	display: none;
+	animation: fadeInDown 0.5s ease-in-out forwards;
+}
+@keyframes fadeInDown {
+  from {
+    display: block;
+    bottom: 90px;
+    opacity: 1;
+  }
+  to {
+		display: none;
+    bottom: -200px;
+    opacity: 0;
+  }
 }
 
 .chat-box-visible {
@@ -1937,14 +1958,23 @@ header button {
   background: #ffffff;
   position: fixed;
   right:30px;
-  bottom: 120px !important;
   width:350px;
   max-width: 85vw;
   max-height:100vh;
   border-radius: 16px;
-  -webkit-box-shadow: 0px 0px 15px 3px rgba(0,0,0,0.52); 
-  box-shadow: 0px 0px 15px 3px rgba(0,0,0,0.52);
-  transition: all 0.5s ease;
+	box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 30px 0px;
+  animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    bottom: -200px;
+  }
+  to {
+		display: block;
+    bottom: 90px;
+    opacity: 1;
+  }
 }
 
 .chat-box .chat-box-header .user-manager-name {
@@ -2013,14 +2043,36 @@ header button {
     margin-right: 10px;
 }
 
+.btn-social-chat-box {
+	padding-right: 20px;
+	padding-left: 20px;
+	padding-top: 20px;
+	padding-bottom: 30px;
+}
+
+.btn-social-chat-box > a {
+	margin-right: 10px;
+}
+
+.btn-social-chat-box > a:last-child {
+	margin-right: 0px;
+}
+
+.btn-social-chat-box a {
+	color: none;
+	text-decoration: none;
+	width: 0;
+}
+
+.btn-social-chat-box svg {
+	
+}
+
 .btn-social-chat-box__whatsaap {
-    position: absolute;
-    bottom: 15px;
-    left: 15px;
-    padding: 12px 40px;
-    border-radius: 16px;
-    background-color: #25d366;
-    transition: background-color 0.3s ease-in-out;
+	padding: 14px 39px;
+	border-radius: 16px;
+	background-color: #25d366;
+	transition: background-color 0.3s ease-in-out;
 }
 
 .btn-social-chat-box__whatsaap:hover {
@@ -2034,13 +2086,10 @@ header button {
 }
 
 .btn-social-chat-box__telegram  {
-    position: absolute;
-    bottom: 15px;
-    left: 123px;
-    padding: 12px 40px;
-    border-radius: 16px;
-    background-color: #28a8e9;
-    transition: background-color 0.3s ease-in-out;
+  padding: 14px 39px;
+	border-radius: 16px;
+	background-color: #1D98DC;
+	transition: background-color 0.3s ease-in-out;
 }
 
 .btn-social-chat-box__telegram:hover {
@@ -2054,13 +2103,10 @@ header button {
 }
 
 .btn-social-chat-box__phone {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    padding: 12px 40px;
-    border-radius: 16px;
-    background-color: #29f54c;
-    transition: background-color 0.3s ease-in-out;
+	padding: 14px 39px;
+	border-radius: 16px;
+	background-color: #01D613;
+	transition: background-color 0.3s ease-in-out;
 }
 
 .btn-social-chat-box__phone:hover {
@@ -2087,14 +2133,13 @@ header button {
     border-top-right-radius:16px;
     color: #000000;
     text-align:center;
-    padding-top: 16px;
-    padding-bottom: 16px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 
     font-size: 14px;
     font-weight: 500;
     line-height: 17px;
     border-bottom: 1px solid #dcdcdc;
-
 }
 
 .chat-box-body {
@@ -2195,8 +2240,8 @@ header button {
 
 .chat-logs {
   display: flex;
-  padding:15px;
-  height:308px;
+  padding:20px;
+  /* height:308px; */
 }
 
 .chat-logs::-webkit-scrollbar-track
@@ -2245,7 +2290,7 @@ header button {
     background: #F8F8F8;
     padding: 12px;
     color: #000000;
-    max-width:75%;
+    max-width:80%;
     max-height: 60%;
     border-radius: 16px;
     font-size: 15px;
