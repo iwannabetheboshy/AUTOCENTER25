@@ -128,7 +128,7 @@
 
 }
 
-.mobile-social .btn-social-mobile-social__instagram svg {
+.mobile-social .btn-social-mobile-social__instagram > svg {
 	background-color: #ffffff;
 	border-radius: 50%;
   cursor: pointer;
@@ -137,16 +137,40 @@
 }
 
 .mobile-social .btn-social-mobile-social__telegram svg {
-	background-color: #ffffff;
-	border-radius: 50%;
   cursor: pointer;
-  fill: #28a8e9;
+  fill: #ffffff;
   transition: fill 0.3s ease-in-out;
 }
 
-.mobile-social svg:hover {
-  fill: #eb1c24;
+.mobile-social .btn-social-mobile-social__telegram {
+  background-color: #28a8e9;
+  border-radius: 16px;
+  padding: 10px 20px;
+}
+
+.mobile-social .btn-social-mobile-social__whatsaap svg {
+  cursor: pointer;
+  fill: #ffffff;
   transition: fill 0.3s ease-in-out;
+}
+
+.mobile-social .btn-social-mobile-social__whatsaap {
+  background-color: #25d366;
+  border-radius: 16px;
+  padding: 10px 20px;
+}
+
+
+.mobile-social .btn-social-mobile-social__phone svg {
+  cursor: pointer;
+  fill: #ffffff;
+  transition: fill 0.3s ease-in-out;
+}
+
+.mobile-social .btn-social-mobile-social__phone {
+  background-color: #01D613;
+  border-radius: 16px;
+  padding: 10px 20px;
 }
 
 .mobile-social .btn {
