@@ -689,7 +689,7 @@
                   <div class="col-12">
                     <button
                       type="submit"
-                      onclick="metrikFunc"
+                      onclick="metrikFunc()"
                     >
                       Отправить
                     </button>
@@ -1093,6 +1093,18 @@
   <script>
     const setModalInput = (text) => {
       document.querySelector(".modal textarea").value = text;
+    };
+  </script>
+
+  <script>
+    function metrikFunc () {
+      if (!document.querySelector('.fb_phone').classList.contains('is-invalid') && document.querySelector('.fb_phone').value !== '' && document.querySelector('.fb_name').value !== '') {
+  
+        ym(97653553,'reachGoal','YM-form'); 
+        return true;
+  
+      }
+      console.log('YM');
     };
   </script>
 </html>

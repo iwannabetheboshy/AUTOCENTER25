@@ -2,20 +2,8 @@ AOS.init({
     once: true,
 });
 
-function metrikFunc () {
-
-  document.getElementById('feedback-form-modal').addEventListener('change', () => {
-
-    if (!document.querySelector('.fb_phone').classList.contains('is-invalid') && document.querySelector('.fb_phone').value !== '' && document.querySelector('.fb_name').value !== '') {
-
-      ym(97653553,'reachGoal','YM-form'); 
-      return true;
-
-    }
-  });
-};
-
 document.addEventListener('DOMContentLoaded', () => {
+
 	// ����� ��� �������� � ����� �������� �����
 	phoneInputs = document.querySelectorAll('.fb_phone');	
 	phoneInputs.forEach(function (input) {		
