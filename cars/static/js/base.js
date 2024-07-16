@@ -2,8 +2,21 @@ AOS.init({
     once: true,
 });
 
+function metrikFunc () {
+
+  document.getElementById('feedback-form-modal').addEventListener('change', () => {
+
+    if (!document.querySelector('.fb_phone').classList.contains('is-invalid') && document.querySelector('.fb_phone').value !== '' && document.querySelector('.fb_name').value !== '') {
+
+      ym(97653553,'reachGoal','YM-form'); 
+      return true;
+
+    }
+  });
+};
+
 document.addEventListener('DOMContentLoaded', () => {
-	// Маска для телефона в форме обратной связи
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	phoneInputs = document.querySelectorAll('.fb_phone');	
 	phoneInputs.forEach(function (input) {		
 		var phoneMask = IMask(input, {			
@@ -27,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		}	
 	}
 	
-	// Логика работы шапки
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	var didScroll;    
 	var lastScrollTop = 0;    
 	var delta = 5;    

@@ -96,12 +96,13 @@ def sendFeedBack(request):
             name = form.cleaned_data["name"]
             number = form.cleaned_data["number"]
             message = form.cleaned_data["message"]
-            get(
-                "https://api.telegram.org/bot7308037244:AAEphpg72xfYk_MdRZ1EzuGZQq6i2FuTmDw/sendmessage?chat_id={user_id}&text={text}".format(
-                    text=f"Имя: {name}\nТелефон: {number}\nЗапрос: {message}",
-                    user_id=629793380,
-                )
-            )
+            print(f"Имя: {name}\nТелефон: {number}\nЗапрос: {message}")
+            # get(
+            #     "https://api.telegram.org/bot7308037244:AAEphpg72xfYk_MdRZ1EzuGZQq6i2FuTmDw/sendmessage?chat_id={user_id}&text={text}".format(
+            #         text=f"Имя: {name}\nТелефон: {number}\nЗапрос: {message}",
+            #         user_id=629793380,
+            #     )
+            # )
             #get(
             #    "https://api.telegram.org/bot7308037244:AAEphpg72xfYk_MdRZ1EzuGZQq6i2FuTmDw/sendmessage?chat_id={user_id}&text={text}".format(
             #        text=f"Имя: {name}\nТелефон: {number}\nЗапрос: {message}",
