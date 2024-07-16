@@ -152,11 +152,11 @@
                     <form id="feedback-form-modal" class="feedback-form-form" method="post">
                         {% csrf_token %}
                         <div class="row">
-                            <div class="col-lg-6 col-12">
+                            <div id="id_name_feedback" class="col-lg-6 col-12">
                                 <label>Имя</label>
                                 {{feedbackForm.name}}
                             </div>
-                            <div class="col-lg-6 col-12">
+                            <div id="id_phone_feedback" class="col-lg-6 col-12">
                                 <label>Телефон</label>
                                 {{feedbackForm.number}}
                             </div>
@@ -166,7 +166,7 @@
                             </div>
 
                             <div class="col-12">
-                                <button id="id_button_fedback" type="submit" onclick="metrikFunc()">Отправить</button>
+                                <button type="submit" onclick="metrikFuncFeedback()">Отправить</button>
                             </div>
                         </div>
                     </form>

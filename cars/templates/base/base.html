@@ -673,11 +673,11 @@
               >
                 {% csrf_token %}
                 <div class="row">
-                  <div class="col-6">
+                  <div id="id_name_feedback_modal" class="col-6">
                     <label>Имя</label>
                     {{feedbackForm.name}}
                   </div>
-                  <div class="col-6">
+                  <div id="id_phone_feedback_modal" class="col-6">
                     <label>Телефон</label>
                     {{feedbackForm.number}}
                   </div>
@@ -689,7 +689,7 @@
                   <div class="col-12">
                     <button
                       type="submit"
-                      onclick="metrikFunc()"
+                      onclick="metrikFuncFeedbackModal()"
                     >
                       Отправить
                     </button>
@@ -1097,14 +1097,31 @@
   </script>
 
   <script>
-    function metrikFunc () {
-      if (!document.querySelector('.fb_phone').classList.contains('is-invalid') && document.querySelector('.fb_phone').value !== '' && document.querySelector('.fb_name').value !== '') {
-  
+    const fieldsFeedbackForm = {
+      nameInput: document.querySelector('#id_name_feedback .fb_name'),
+      phoneInput: document.querySelector('#id_phone_feedback .fb_phone'),
+    }
+    
+    const fieldsFeedbackFormModal = {
+      nameInput: document.querySelector('#id_name_feedback_modal .fb_name'),
+      phoneInput: document.querySelector('#id_phone_feedback_modal .fb_phone'),
+    }
+
+    const metrikFuncFeedback = () => {
+
+      if (!fieldsFeedbackForm.phoneInput.classList.contains('is-invalid') && fieldsFeedbackForm.phoneInput.value !== '' && fieldsFeedbackForm.nameInput.value !== '') {
+        console.log('YM-func-feedback');
         ym(97653553,'reachGoal','YM-form'); 
         return true;
-  
       }
-      console.log('YM');
     };
+
+    const metrikFuncFeedbackModal = () => {
+      if (!fieldsFeedbackFormModal.phoneInput.classList.contains('is-invalid') && fieldsFeedbackFormModal.phoneInput.value !== '' && fieldsFeedbackFormModal.nameInput.value !== '') {
+        console.log('YM-func-modal');
+        ym(97653553,'reachGoal','YM-form'); 
+        return true;
+      }
+    }
   </script>
 </html>
